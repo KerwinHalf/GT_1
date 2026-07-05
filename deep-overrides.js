@@ -1125,3 +1125,864 @@
     ], ["完整链条：弱冻结 → 中子衰变 → 氘瓶颈 → He-4 丰度。"], "Yp≈1/4。")
   ]));
 })();
+
+
+/* === Astro topic replacement: detailed MP4 exam notes inserted from the new single-page notes === */
+(function () {
+  const DATA = window.EXPANDED_DATA || [];
+  const sec = DATA.find(x => x.id === "astro");
+  if (!sec) return;
+  if (!document.getElementById('astro-note-wrapper-style')) {
+    const style = document.createElement('style');
+    style.id = 'astro-note-wrapper-style';
+    style.textContent = "\n.astro-note-wrapper{font-family:var(--sans);text-align:left;color:rgba(255,255,255,.86);padding:16px 17px;line-height:1.9;overflow-x:auto;max-width:100%;}\n.astro-note-wrapper h3{margin:0 0 12px;color:var(--gold);font-size:22px;line-height:1.35;}\n.astro-note-wrapper h4{margin:18px 0 8px;color:rgba(255,240,190,.96);font-size:17px;}\n.astro-note-wrapper p{margin:10px 0;color:rgba(255,255,255,.82);}\n.astro-note-wrapper ul,.astro-note-wrapper ol{padding-left:1.35em;margin:8px 0;}\n.astro-note-wrapper li{margin:5px 0;color:rgba(255,255,255,.80);}\n.astro-note-wrapper .note,.astro-note-wrapper .danger,.astro-note-wrapper .ok,.astro-note-wrapper .exam,.astro-note-wrapper .derivation,.astro-note-wrapper .formula-box{border-radius:13px;padding:12px 13px;margin:12px 0;border:1px solid rgba(244,201,93,.20);background:rgba(255,255,255,.045);}\n.astro-note-wrapper .note{border-left:4px solid #75d6ff;}\n.astro-note-wrapper .exam{border-left:4px solid #ffd166;background:rgba(255,209,102,.07);}\n.astro-note-wrapper .ok{border-left:4px solid #7dd3a8;background:rgba(125,211,168,.055);}\n.astro-note-wrapper .danger{border-left:4px solid #fb7185;background:rgba(251,113,133,.055);}\n.astro-note-wrapper .derivation{border-left:4px solid #a78bfa;}\n.astro-note-wrapper .formula-box{background:rgba(5,10,20,.55);border-color:rgba(244,201,93,.18);overflow-x:auto;}\n.astro-note-wrapper .math-scroll{overflow-x:auto;max-width:100%;}\n.astro-note-wrapper .mono{font-family:\"SFMono-Regular\",\"Cascadia Code\",\"Consolas\",\"Menlo\",monospace;}\n.astro-note-wrapper table{width:100%;border-collapse:collapse;margin:13px 0;border:1px solid rgba(244,201,93,.20);display:block;overflow-x:auto;background:rgba(5,10,20,.55);border-radius:12px;}\n.astro-note-wrapper th,.astro-note-wrapper td{border-bottom:1px solid rgba(255,255,255,.13);padding:9px 11px;text-align:left;vertical-align:top;min-width:110px;color:rgba(255,255,255,.82);}\n.astro-note-wrapper th{color:#fff;background:rgba(244,201,93,.10);white-space:nowrap;}\n.astro-note-wrapper tr:last-child td{border-bottom:0;}\n.astro-note-wrapper details{border:1px solid rgba(244,201,93,.18);background:rgba(255,255,255,.035);border-radius:13px;margin:12px 0;overflow:hidden;}\n.astro-note-wrapper summary{cursor:pointer;padding:10px 12px;font-weight:800;color:#fff;background:rgba(244,201,93,.08);}\n.astro-note-wrapper details .inside{padding:4px 12px 12px;}\n.astro-note-wrapper .step{display:grid;grid-template-columns:38px minmax(0,1fr);gap:10px;margin:12px 0;align-items:start;}\n.astro-note-wrapper .step .num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold),#fff0a8);color:#160f00;font-weight:900;}\n.astro-note-wrapper .timeline{display:grid;gap:10px;margin:12px 0;}\n.astro-note-wrapper .titem{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;border:1px solid rgba(244,201,93,.18);border-radius:13px;padding:10px;background:rgba(255,255,255,.035);}\n.astro-note-wrapper .tag{display:inline-block;font-size:.8rem;font-weight:800;border-radius:999px;padding:2px 8px;margin-right:6px;color:#160f00;background:var(--gold);}\n.astro-note-wrapper .tag.purple{background:#a78bfa;color:white}.astro-note-wrapper .tag.yellow{background:#ffd166}.astro-note-wrapper .tag.green{background:#7dd3a8}\n.astro-note-wrapper mjx-container{overflow-x:auto;overflow-y:hidden;max-width:100%;}\n@media (max-width:560px){.astro-note-wrapper{padding:13px 12px;font-size:15px}.astro-note-wrapper h3{font-size:19px}.astro-note-wrapper .titem{grid-template-columns:1fr;gap:4px}.astro-note-wrapper .step{grid-template-columns:30px minmax(0,1fr)}}\n";
+    document.head.appendChild(style);
+  }
+  sec.name = "天体物理专题";
+  sec.topics = [
+  {
+    "id": "scope",
+    "label": "视频总览",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：0. 使用说明与视频主线",
+    "core": "视频总览",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>这份网页按照“考试时能完整写出推导”的目标组织。每个重要结论都尽量按以下顺序写：</p><div class=\"note\">\n<p><span class=\"tag\">结构</span>物理假设 → 变量定义 → 态数/能量/热力学关系 → 逐步代入 → 最终公式 → 极限检查 → 考试易错点。</p>\n</div><p>本栏目已嵌入当前 GitHub Pages 站点。手机浏览时公式区域可以左右滑动；公式使用 MathJax 在线渲染，没有网络时 LaTeX 源码仍然可读。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "0.1 八个视频的主线",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>0.1 八个视频的主线</h3><table>\n<thead><tr><th>视频</th><th>课堂主线</th><th>考试优先级</th></tr></thead>\n<tbody>\n<tr><td>20260615 上</td><td>天体物理专题引入；白矮星、中子星、热大爆炸宇宙学与统计物理的关系；天狼星 B 背景。</td><td>低，理解背景</td></tr>\n<tr><td>20260615 下</td><td>白矮星为何可看作零温简并电子气；费米球计数；非相对论与相对论简并压。</td><td>高</td></tr>\n<tr><td>20260617 上</td><td>简并压推导继续；一般相对论化 EOS；钱德拉塞卡极限。</td><td>高</td></tr>\n<tr><td>20260617 下</td><td>白矮星平衡与质量-半径关系；静电修正引入。</td><td>高</td></tr>\n<tr><td>20260622 上</td><td>Wigner-Seitz 原胞；电子-电子、电子-离子静电能；EOS 软化。</td><td>中高</td></tr>\n<tr><td>20260622 下</td><td>Thomas-Fermi 模型；低密度电子分布非均匀；n-p-e 混合气开头。</td><td>中高</td></tr>\n<tr><td>20260624 上</td><td>n-p-e 混合费米气；beta 平衡；中子化阈值；Harrison-Wheeler 型 EOS。</td><td>高</td></tr>\n<tr><td>20260624 下</td><td>核物质 EOS 收尾；热大爆炸宇宙学；Friedmann 方程、温度演化、退耦。</td><td>中高</td></tr>\n</tbody>\n</table><div class=\"exam\">\n<p><b>复习优先顺序：</b>零温费米气简并压 &gt; 钱德拉塞卡极限 &gt; 静电修正符号与密度标度 &gt; beta 平衡与中子化 &gt; Friedmann 能量守恒与退耦条件。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "wd_model",
+    "label": "白矮星判据",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：1. 白矮星模型与简并判据",
+    "core": "\n    \\[\n    \\text{白矮星} \\approx \\text{离子质量的引力} + \\text{零温电子简并压的支撑}.\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "1.1 白矮星的最小模型",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>1.1 白矮星的最小模型</h3><p>白矮星的基本近似是：离子提供主要质量与引力，电子提供主要压强。电子的压强不是热运动压强，而是 Pauli 不相容原理造成的简并压。</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\text{白矮星} \\approx \\text{离子质量的引力} + \\text{零温电子简并压的支撑}.\n    \\]\n  </div><p>这句话背起来很轻松，理解起来不能偷懒。电子之所以重要，是因为电子质量小，在同样数密度下量子波长更大，更容易让波包互相重叠。原子核也可以简并，但需要高得多的密度；白矮星阶段主要是电子简并，中子星阶段才进入中子简并主导。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "1.2 什么时候经典统计失效",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>1.2 什么时候经典统计失效</h3><p>设电子数密度为 \\(n_e\\)，平均粒子间距量级为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Delta x \\sim n_e^{-1/3}.\n    \\]\n  </div><p>若粒子波包尺度远小于 \\(\\Delta x\\)，粒子彼此可区分，Maxwell-Boltzmann 近似可用；若波包明显重叠，就必须使用量子统计。热平衡气体常用热德布罗意波长</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\lambda_{\\rm th}=\\frac{h}{\\sqrt{2\\pi m_e k_B T}}.\n    \\]\n  </div><p>简并判据写成</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_e\\lambda_{\\rm th}^3 \\gg 1 \\quad \\Longrightarrow \\quad \\text{强简并}.\n    \\]\n  </div><p>零温费米气里更常用费米温度或费米能比较：</p><div class=\"formula-box math-scroll\">\n    \\[\n    k_B T \\ll E_F \\quad \\Longrightarrow \\quad T=0\\text{ 近似有效}.\n    \\]\n  </div><div class=\"exam\">\n<p><b>考试解释：</b>“零温”不是说恒星真的绝对零度，而是说热能 \\(k_BT\\) 相比费米能 \\(E_F\\) 很小，电子占据函数近似为阶跃函数。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "1.3 零温费米分布的图像",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>1.3 零温费米分布的图像</h3><p>零温时，所有能量低于费米能的单粒子态被填满，高于费米能的态为空：</p><div class=\"formula-box math-scroll\">\n    \\[\n    f(E)=\\begin{cases}\n    1, &amp; E<e_f,\\\\ &=\"\" 0,=\"\" e=\"\">E_F.\n    \\end{cases}\n    \\]\n  </e_f,\\\\></div><div class=\"svgwrap\">\n<svg aria-label=\"零温费米分布与有限温费米分布示意\" role=\"img\" viewbox=\"0 0 760 260\">\n<rect fill=\"#081120\" height=\"260\" width=\"760\" x=\"0\" y=\"0\"></rect>\n<line stroke=\"#9fb4d6\" stroke-width=\"2\" x1=\"80\" x2=\"700\" y1=\"210\" y2=\"210\"></line>\n<line stroke=\"#9fb4d6\" stroke-width=\"2\" x1=\"80\" x2=\"80\" y1=\"35\" y2=\"210\"></line>\n<text fill=\"#cfe2ff\" font-size=\"16\" x=\"704\" y=\"216\">E</text>\n<text fill=\"#cfe2ff\" font-size=\"16\" x=\"55\" y=\"42\">f</text>\n<polyline fill=\"none\" points=\"80,55 390,55 390,210 690,210\" stroke=\"#75d6ff\" stroke-width=\"4\"></polyline>\n<path d=\"M80 58 C250 58, 340 60, 380 95 C420 132, 425 186, 690 208\" fill=\"none\" stroke=\"#a78bfa\" stroke-width=\"4\"></path>\n<line stroke=\"#ffd166\" stroke-dasharray=\"8 8\" stroke-width=\"2\" x1=\"390\" x2=\"390\" y1=\"210\" y2=\"35\"></line>\n<text fill=\"#ffd166\" font-size=\"16\" x=\"368\" y=\"235\">E_F</text>\n<text fill=\"#75d6ff\" font-size=\"16\" x=\"120\" y=\"82\">T=0：阶跃</text>\n<text fill=\"#cdbbff\" font-size=\"16\" x=\"462\" y=\"126\">T&gt;0：费米面被热展宽</text>\n</svg>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "fermi_count",
+    "label": "费米球计数",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：2. 零温自由电子气：费米球计数",
+    "core": "在三维盒子体积 \\(V=L^3\\) 中，周期边界条件给出",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>这是所有后续公式的地基。地基错了，后面再漂亮也只是会倒塌的数学装饰。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "2.1 单粒子态数的来源",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>2.1 单粒子态数的来源</h3><p>在三维盒子体积 \\(V=L^3\\) 中，周期边界条件给出</p><div class=\"formula-box math-scroll\">\n    \\[\n    k_i=\\frac{2\\pi n_i}{L},\\qquad n_i\\in\\mathbb Z.\n    \\]\n  </div><p>所以 \\(k\\)-空间每个态占据体积</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Delta k_x\\Delta k_y\\Delta k_z=\\left(\\frac{2\\pi}{L}\\right)^3=\\frac{(2\\pi)^3}{V}.\n    \\]\n  </div><p>把 \\(p=\\hbar k\\) 换到动量空间，每个态对应体积</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Delta p_x\\Delta p_y\\Delta p_z\n    =\\hbar^3\\frac{(2\\pi)^3}{V}\n    =\\frac{h^3}{V}.\n    \\]\n  </div><p>因此单位动量空间体积的态密度是 \\(V/h^3=V/(2\\pi\\hbar)^3\\)。电子自旋有两个取向，所以乘以 \\(g_s=2\\)。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "2.2 费米球内的总电子数",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>2.2 费米球内的总电子数</h3><div class=\"derivation\">\n<div class=\"step\"><div class=\"num\">1</div><div>零温下，动量空间中 \\(|p|\\le p_F\\) 的态全部填满，形成半径为 \\(p_F\\) 的球。</div></div>\n<div class=\"step\"><div class=\"num\">2</div><div>动量球体积为 \\(\\frac{4\\pi}{3}p_F^3\\)。</div></div>\n<div class=\"step\"><div class=\"num\">3</div><div>总电子数为自旋简并度乘以态数：</div></div>\n<div class=\"formula-box math-scroll\">\n      \\[\n      N=2\\cdot \\frac{V}{h^3}\\cdot \\frac{4\\pi}{3}p_F^3.\n      \\]\n    </div>\n<div class=\"step\"><div class=\"num\">4</div><div>把 \\(h=2\\pi\\hbar\\) 代入：</div></div>\n<div class=\"formula-box math-scroll\">\n      \\[\n      N=2\\frac{V}{(2\\pi\\hbar)^3}\\frac{4\\pi}{3}p_F^3\n      =\\frac{V}{3\\pi^2\\hbar^3}p_F^3.\n      \\]\n    </div>\n</div><p>所以电子数密度为</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_e=\\frac{N}{V}=\\frac{p_F^3}{3\\pi^2\\hbar^3},\n    \\qquad\n    p_F=\\hbar(3\\pi^2 n_e)^{1/3}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "2.3 用无量纲相对论参数表示",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>2.3 用无量纲相对论参数表示</h3><p>定义</p><div class=\"formula-box math-scroll\">\n    \\[\n    x\\equiv \\frac{p_F}{m_e c},\\qquad \\lambda_C\\equiv \\frac{\\hbar}{m_e c}.\n    \\]\n  </div><p>由 \\(p_F=m_ecx\\) 得</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_e=\\frac{(m_ecx)^3}{3\\pi^2\\hbar^3}\n    =\\frac{x^3}{3\\pi^2\\lambda_C^3}.\n    \\]\n  </div><div class=\"danger\">\n<p><b>易错点：</b>如果一开始用 \\(h^3\\) 做相空间体积，最后不要忘了 \\(h=2\\pi\\hbar\\)。漏掉这个转换，\\(3\\pi^2\\) 会变成乱七八糟的怪物。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "nr_pressure",
+    "label": "NR 简并压",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：3. 非相对论零温电子气简并压",
+    "core": "\n    \\[\n    p_F\\ll m_ec \\quad \\Longleftrightarrow \\quad x\\ll 1.\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>适用条件：</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_F\\ll m_ec \\quad \\Longleftrightarrow \\quad x\\ll 1.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "3.1 单粒子能量与费米能",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>3.1 单粒子能量与费米能</h3><p>非相对论动能为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\epsilon(p)=\\frac{p^2}{2m_e}.\n    \\]\n  </div><p>费米能即最高占据态的动能：</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_F=\\frac{p_F^2}{2m_e}\n    =\\frac{\\hbar^2}{2m_e}(3\\pi^2n_e)^{2/3}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "3.2 平均动能：为什么是 \\(3/5E_F\\)",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>3.2 平均动能：为什么是 \\(3/5E_F\\)</h3><p>动量空间中态数权重为 \\(p^2dp\\)，所以平均动能不是简单地取 \\(E_F/2\\)。严格写：</p><div class=\"derivation\">\n<div class=\"formula-box math-scroll\">\n      \\[\n      \\langle \\epsilon\\rangle\n      =\\frac{\\int_0^{p_F}\\frac{p^2}{2m_e}\\,p^2\\,dp}{\\int_0^{p_F}p^2\\,dp}.\n      \\]\n    </div>\n<p>分别算分子和分母：</p>\n<div class=\"formula-box math-scroll\">\n      \\[\n      \\int_0^{p_F}p^2dp=\\frac{p_F^3}{3},\n      \\qquad\n      \\int_0^{p_F}\\frac{p^2}{2m_e}p^2dp\n      =\\frac{1}{2m_e}\\frac{p_F^5}{5}.\n      \\]\n    </div>\n<p>相除：</p>\n<div class=\"formula-box math-scroll\">\n      \\[\n      \\langle \\epsilon\\rangle\n      =\\frac{p_F^5/(10m_e)}{p_F^3/3}\n      =\\frac{3}{10}\\frac{p_F^2}{m_e}\n      =\\frac{3}{5}\\frac{p_F^2}{2m_e}\n      =\\frac{3}{5}E_F.\n      \\]\n    </div>\n</div><p>于是总内能</p><div class=\"formula-box math-scroll\">\n    \\[\n    U_{\\rm NR}=N\\langle\\epsilon\\rangle=\\frac{3}{5}NE_F.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "3.3 从 \\(U(V,N)\\) 求压强",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>3.3 从 \\(U(V,N)\\) 求压强</h3><p>零温下熵项不贡献，固定粒子数时</p><div class=\"formula-box math-scroll\">\n    \\[\n    dU=-P\\,dV,\n    \\qquad\n    P=-\\left(\\frac{\\partial U}{\\partial V}\\right)_N.\n    \\]\n  </div><p>因为</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_F\\propto n_e^{2/3}=\\left(\\frac{N}{V}\\right)^{2/3},\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    U_{\\rm NR}=\\frac{3}{5}N E_F\n    =C_{\\rm NR}N\\left(\\frac{N}{V}\\right)^{2/3}\n    =C_{\\rm NR}N^{5/3}V^{-2/3}.\n    \\]\n  </div><p>对 \\(V\\) 求偏导：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\left(\\frac{\\partial U_{\\rm NR}}{\\partial V}\\right)_N\n    =-\\frac{2}{3}C_{\\rm NR}N^{5/3}V^{-5/3}\n    =-\\frac{2}{3}\\frac{U_{\\rm NR}}{V}.\n    \\]\n  </div><p>因此</p><div class=\"formula-box math-scroll\">\n    \\[\n    P_{\\rm NR}=\\frac{2}{3}\\frac{U_{\\rm NR}}{V}\n    =\\frac{2}{3}\\frac{1}{V}\\frac{3}{5}NE_F\n    =\\frac{2}{5}n_eE_F.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "3.4 代入 \\(p_F(n_e)\\)",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>3.4 代入 \\(p_F(n_e)\\)</h3><div class=\"formula-box math-scroll\">\n    \\[\n    P_{\\rm NR}=\\frac{2}{5}n_e\\frac{p_F^2}{2m_e}\n    =\\frac{1}{5m_e}n_ep_F^2.\n    \\]\n  </div><div class=\"formula-box math-scroll\">\n    \\[\n    p_F^2=\\hbar^2(3\\pi^2n_e)^{2/3}.\n    \\]\n  </div><p>最终得到</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P_{\\rm NR}=\\frac{\\hbar^2}{5m_e}(3\\pi^2)^{2/3}n_e^{5/3}}.\n    \\]\n  </div><p>若用质量密度 \\(\\rho\\)，设每个电子对应 \\(\\mu_em_p\\) 的质量：</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_e=\\frac{\\rho}{\\mu_em_p},\n    \\qquad\n    \\boxed{P_{\\rm NR}=K_{\\rm NR}\\rho^{5/3}},\n    \\]\n    \\[\n    K_{\\rm NR}=\\frac{\\hbar^2}{5m_e}(3\\pi^2)^{2/3}(\\mu_em_p)^{-5/3}.\n    \\]\n  </div><div class=\"exam\">\n<p><b>考试必须写清楚：</b>\\(3/5\\) 来自动量空间积分，\\(2/3\\) 来自 \\(U\\propto V^{-2/3}\\) 对体积求导。不要只写结论。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "er_pressure",
+    "label": "ER 简并压",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：4. 极端相对论零温电子气简并压",
+    "core": "\n    \\[\n    p_F\\gg m_ec \\quad \\Longleftrightarrow \\quad x\\gg 1.\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>适用条件：</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_F\\gg m_ec \\quad \\Longleftrightarrow \\quad x\\gg 1.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "4.1 单粒子能量与平均能量",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>4.1 单粒子能量与平均能量</h3><p>极端相对论时</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\epsilon(p)\\simeq pc,\n    \\qquad E_F=p_Fc.\n    \\]\n  </div><p>平均能量仍然按动量空间态数权重 \\(p^2dp\\) 算：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\langle\\epsilon\\rangle\n    =\\frac{\\int_0^{p_F}pc\\,p^2dp}{\\int_0^{p_F}p^2dp}\n    =\\frac{c\\,p_F^4/4}{p_F^3/3}\n    =\\frac{3}{4}p_Fc\n    =\\frac{3}{4}E_F.\n    \\]\n  </div><p>于是</p><div class=\"formula-box math-scroll\">\n    \\[\n    U_{\\rm ER}=\\frac{3}{4}Np_Fc.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "4.2 对体积求导",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>4.2 对体积求导</h3><p>因为 \\(p_F\\propto n_e^{1/3}\\propto (N/V)^{1/3}\\)，有</p><div class=\"formula-box math-scroll\">\n    \\[\n    U_{\\rm ER}=C_{\\rm ER}N\\left(\\frac{N}{V}\\right)^{1/3}\n    =C_{\\rm ER}N^{4/3}V^{-1/3}.\n    \\]\n  </div><p>求导：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\left(\\frac{\\partial U_{\\rm ER}}{\\partial V}\\right)_N\n    =-\\frac{1}{3}C_{\\rm ER}N^{4/3}V^{-4/3}\n    =-\\frac{1}{3}\\frac{U_{\\rm ER}}{V}.\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    P_{\\rm ER}=\\frac{1}{3}\\frac{U_{\\rm ER}}{V}\n    =\\frac{1}{3}\\frac{3}{4}n_ep_Fc\n    =\\frac{1}{4}n_ep_Fc.\n    \\]\n  </div><p>代入 \\(p_F=\\hbar(3\\pi^2n_e)^{1/3}\\)，得到</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P_{\\rm ER}=\\frac{\\hbar c}{4}(3\\pi^2)^{1/3}n_e^{4/3}}.\n    \\]\n  </div><p>换成质量密度：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P_{\\rm ER}=K_{\\rm ER}\\rho^{4/3}},\n    \\qquad\n    K_{\\rm ER}=\\frac{\\hbar c}{4}(3\\pi^2)^{1/3}(\\mu_em_p)^{-4/3}.\n    \\]\n  </div><div class=\"ok\">\n<p><b>物理解释：</b>非相对论压强标度 \\(P\\propto n^{5/3}\\)，极端相对论变成 \\(P\\propto n^{4/3}\\)。密度升高时压强增长变慢，白矮星的支撑能力变弱，这正是极限质量出现的核心。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "general_eos",
+    "label": "一般 EOS",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：5. 一般相对论化零温费米气 EOS",
+    "core": "\n    \\[\n    \\epsilon(p)=\\sqrt{p^2c^2+m_e^2c^4}.\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>前面 NR 和 ER 是两个极限。一般情况下电子能量为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\epsilon(p)=\\sqrt{p^2c^2+m_e^2c^4}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "5.1 压强积分从哪里来",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>5.1 压强积分从哪里来</h3><p>动理论中，一个各向同性粒子气体的压强可以写成</p><div class=\"formula-box math-scroll\">\n    \\[\n    P=\\frac{1}{3}\\int p v\\,dn,\n    \\]\n  </div><p>其中 \\(v=d\\epsilon/dp\\)。零温电子气中</p><div class=\"formula-box math-scroll\">\n    \\[\n    dn=\\frac{g_s}{(2\\pi\\hbar)^3}4\\pi p^2dp,\n    \\qquad g_s=2.\n    \\]\n  </div><p>于是</p><div class=\"formula-box math-scroll\">\n    \\[\n    P=\\frac{1}{3}\\frac{2}{(2\\pi\\hbar)^3}4\\pi\\int_0^{p_F}pv\\,p^2dp\n    =\\frac{1}{3\\pi^2\\hbar^3}\\int_0^{p_F}p^3v\\,dp.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "5.2 换成无量纲变量 \\(x\\)",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>5.2 换成无量纲变量 \\(x\\)</h3><p>定义</p><div class=\"formula-box math-scroll\">\n    \\[\n    x=\\frac{p}{m_ec},\n    \\qquad p=m_ecx,\n    \\qquad dp=m_ec\\,dx.\n    \\]\n  </div><p>速度为</p><div class=\"formula-box math-scroll\">\n    \\[\n    v=\\frac{d\\epsilon}{dp}=\\frac{pc^2}{\\epsilon}\n    =\\frac{cx}{\\sqrt{1+x^2}}.\n    \\]\n  </div><p>代入压强积分：</p><div class=\"formula-box math-scroll\">\n    \\[\n    P=\\frac{1}{3\\pi^2\\hbar^3}\n    \\int_0^{x_F}(m_ecx)^3\\frac{cx}{\\sqrt{1+x^2}}(m_ec)dx.\n    \\]\n  </div><p>整理：</p><div class=\"formula-box math-scroll\">\n    \\[\n    P=\\frac{m_e^4c^5}{3\\pi^2\\hbar^3}\n    \\int_0^{x_F}\\frac{x^4}{\\sqrt{1+x^2}}dx.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "5.3 积分结果与一般式",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>5.3 积分结果与一般式</h3><p>标准积分为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\int_0^x\\frac{t^4}{\\sqrt{1+t^2}}dt\n    =\\frac{1}{8}\\left[x(2x^2-3)\\sqrt{1+x^2}+3\\operatorname{asinh}x\\right].\n    \\]\n  </div><p>其中</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\operatorname{asinh}x=\\ln\\left(x+\\sqrt{1+x^2}\\right).\n    \\]\n  </div><p>因此一般压强可写成</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P(x)=\\frac{m_e^4c^5}{24\\pi^2\\hbar^3}A(x)},\n    \\]\n    \\[\n    \\boxed{A(x)=x(2x^2-3)\\sqrt{1+x^2}+3\\ln\\left(x+\\sqrt{1+x^2}\\right)}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "5.4 两个极限检查",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>5.4 两个极限检查</h3><details open=\"\"><summary>非相对论极限 \\(x\\ll1\\)</summary>\n<div class=\"inside\">\n<p>对 \\(A(x)\\) 展开，最低非零阶为</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        A(x)=\\frac{8}{5}x^5+O(x^7).\n        \\]\n      </div>\n<p>所以</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        P\\simeq \\frac{m_e^4c^5}{24\\pi^2\\hbar^3}\\frac{8}{5}x^5\n        =\\frac{m_e^4c^5}{15\\pi^2\\hbar^3}x^5.\n        \\]\n      </div>\n<p>再用 \\(x=p_F/(m_ec)\\)，可还原为</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        P_{\\rm NR}=\\frac{p_F^5}{15\\pi^2m_e\\hbar^3}\n        =\\frac{\\hbar^2}{5m_e}(3\\pi^2)^{2/3}n_e^{5/3}.\n        \\]\n      </div>\n</div>\n</details><details open=\"\"><summary>极端相对论极限 \\(x\\gg1\\)</summary>\n<div class=\"inside\">\n<p>此时</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        A(x)=2x^4+O(x^2).\n        \\]\n      </div>\n<p>故</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        P\\simeq \\frac{m_e^4c^5}{12\\pi^2\\hbar^3}x^4\n        =\\frac{p_F^4c}{12\\pi^2\\hbar^3}\n        =\\frac{\\hbar c}{4}(3\\pi^2)^{1/3}n_e^{4/3}.\n        \\]\n      </div>\n</div>\n</details></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "chandra",
+    "label": "钱德拉塞卡极限",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：6. 钱德拉塞卡极限：从能量标度看稳定性",
+    "core": "设白矮星质量为 \\(M\\)、半径为 \\(R\\)。电子数近似",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>钱德拉塞卡极限的本质不是某个神秘常数，而是电子变成相对论性后，动能随半径增长的速度不再足够压住引力。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "6.1 基本估算",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>6.1 基本估算</h3><p>设白矮星质量为 \\(M\\)、半径为 \\(R\\)。电子数近似</p><div class=\"formula-box math-scroll\">\n    \\[\n    N_e\\simeq \\frac{M}{\\mu_em_p}.\n    \\]\n  </div><p>由费米球计数，量纲上</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_F\\sim \\hbar \\left(\\frac{N_e}{R^3}\\right)^{1/3}\n    \\sim \\frac{\\hbar N_e^{1/3}}{R}.\n    \\]\n  </div><p>引力能量量级为</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_g\\sim -\\frac{GM^2}{R}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "6.2 非相对论：有稳定半径",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>6.2 非相对论：有稳定半径</h3><p>非相对论电子动能</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm kin,NR}\\sim N_e\\frac{p_F^2}{2m_e}\n    \\sim N_e\\frac{\\hbar^2N_e^{2/3}}{m_eR^2}\n    \\sim \\frac{\\hbar^2}{m_e}\\frac{N_e^{5/3}}{R^2}.\n    \\]\n  </div><p>把 \\(N_e\\sim M/(\\mu_em_p)\\) 代入：</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm kin,NR}\\sim A\\frac{M^{5/3}}{R^2}.\n    \\]\n  </div><p>总能量</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm NR}(R)=A\\frac{M^{5/3}}{R^2}-B\\frac{GM^2}{R}.\n    \\]\n  </div><p>求平衡半径时令导数为零：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{dE}{dR}=-2A\\frac{M^{5/3}}{R^3}+B\\frac{GM^2}{R^2}=0.\n    \\]\n  </div><p>移项：</p><div class=\"formula-box math-scroll\">\n    \\[\n    BGM^2R=2AM^{5/3}\n    \\quad\\Longrightarrow\\quad\n    R\\propto M^{-1/3}.\n    \\]\n  </div><div class=\"ok\">\n<p><b>结论：</b>非相对论白矮星质量越大，半径越小；但能量曲线仍有极小值，因此有稳定平衡。</p>\n</div><div class=\"svgwrap\">\n<svg aria-label=\"非相对论和极端相对论白矮星能量曲线\" role=\"img\" viewbox=\"0 0 760 300\">\n<rect fill=\"#081120\" height=\"300\" width=\"760\" x=\"0\" y=\"0\"></rect>\n<line stroke=\"#9fb4d6\" stroke-width=\"2\" x1=\"70\" x2=\"700\" y1=\"240\" y2=\"240\"></line>\n<line stroke=\"#9fb4d6\" stroke-width=\"2\" x1=\"70\" x2=\"70\" y1=\"35\" y2=\"260\"></line>\n<text fill=\"#cfe2ff\" font-size=\"16\" x=\"710\" y=\"246\">R</text>\n<text fill=\"#cfe2ff\" font-size=\"16\" x=\"45\" y=\"35\">E</text>\n<path d=\"M92 45 C120 130, 155 225, 245 224 C335 223, 430 155, 610 105\" fill=\"none\" stroke=\"#75d6ff\" stroke-width=\"4\"></path>\n<text fill=\"#75d6ff\" font-size=\"16\" x=\"420\" y=\"112\">NR：有极小值</text>\n<path d=\"M100 65 C180 92, 300 132, 630 215\" fill=\"none\" stroke=\"#ffd166\" stroke-dasharray=\"8 8\" stroke-width=\"4\"></path>\n<text fill=\"#ffd166\" font-size=\"16\" x=\"430\" y=\"206\">ER：系数决定稳定/塌缩</text>\n<circle cx=\"245\" cy=\"224\" fill=\"#75d6ff\" r=\"5\"></circle>\n<text fill=\"#cfe2ff\" font-size=\"15\" x=\"225\" y=\"256\">R₀</text>\n</svg>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "6.3 极端相对论：出现临界质量",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>6.3 极端相对论：出现临界质量</h3><p>极端相对论电子动能</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm kin,ER}\\sim N_ep_Fc\n    \\sim N_e\\frac{\\hbar c N_e^{1/3}}{R}\n    =\\hbar c\\frac{N_e^{4/3}}{R}.\n    \\]\n  </div><p>换成质量：</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm kin,ER}\\sim A\\frac{M^{4/3}}{R}.\n    \\]\n  </div><p>总能量变成</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm ER}(R)=\\frac{A M^{4/3}-BGM^2}{R}.\n    \\]\n  </div><p>这时动能项和引力项都正比 \\(1/R\\)。这意味着不能通过调节 \\(R\\) 得到普通的稳定极小值；稳定性由括号系数决定：</p><div class=\"formula-box math-scroll\">\n    \\[\n    A M^{4/3}-BGM^2&gt;0 \\quad \\Rightarrow \\quad \\text{趋向稳定/膨胀},\n    \\]\n    \\[\n    A M^{4/3}-BGM^2&lt;0 \\quad \\Rightarrow \\quad \\text{塌缩}.\n    \\]\n  </div><p>临界条件</p><div class=\"formula-box math-scroll\">\n    \\[\n    A M^{4/3}=BGM^2\n    \\quad\\Longrightarrow\\quad\n    M^{2/3}=\\frac{A}{BG}.\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{M_{\\rm Ch}\\sim \\frac{(\\hbar c/G)^{3/2}}{\\mu_e^2m_p^2}}.\n    \\]\n  </div><p>更精确的结果常写为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{M_{\\rm Ch}\\simeq \\frac{5.83}{\\mu_e^2}M_\\odot}.\n    \\]\n  </div><p>碳氧白矮星通常 \\(\\mu_e\\simeq2\\)，所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    M_{\\rm Ch}\\simeq1.4M_\\odot.\n    \\]\n  </div><div class=\"exam\">\n<p><b>考试答题核心：</b>必须比较 \\(R^{-2}\\) 与 \\(R^{-1}\\)。非相对论动能随压缩增长更快，所以能量有极小值；相对论动能也只是 \\(R^{-1}\\)，和引力同阶，所以出现极限质量。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "coulomb",
+    "label": "静电修正",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：7. 静电相互作用修正：Wigner-Seitz 原胞",
+    "core": "\n    \\[\n    P=P_0+P_c,\n    \\qquad P_c<0.\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "7.1 修正为什么是负的",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.1 修正为什么是负的</h3><p>自由电子气忽略了电子和离子的库仑相互作用。真实白矮星中：</p><ul>\n<li>电子-电子之间有排斥，能量为正；</li>\n<li>电子-离子之间有吸引，能量为负；</li>\n<li>正电荷集中在离子核附近，吸引项平均上更强；</li>\n<li>总静电修正为负，导致压强小于自由电子气压强。</li>\n</ul><div class=\"formula-box math-scroll\">\n    \\[\n    P=P_0+P_c,\n    \\qquad P_c&lt;0.\n    \\]\n  </div><p>所以说 EOS 被软化，意思就是同样密度下压强变小。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "7.2 Wigner-Seitz 原胞设定",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.2 Wigner-Seitz 原胞设定</h3><p>把每个离子周围划出一个中性球形原胞，半径 \\(r_0\\)。原胞中心有电荷 \\(+Ze\\) 的核，原胞内均匀分布 \\(Z\\) 个电子。</p><div class=\"formula-box math-scroll\">\n    \\[\n    Z=n_e\\frac{4\\pi}{3}r_0^3.\n    \\]\n  </div><p>解出</p><div class=\"formula-box math-scroll\">\n    \\[\n    r_0=\\left(\\frac{3Z}{4\\pi n_e}\\right)^{1/3}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "7.3 电子-电子自能",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.3 电子-电子自能</h3><p>均匀带电球的自能为</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_{ee}=\\frac{3}{5}\\frac{Z^2e^2}{r_0}.\n    \\]\n  </div><details open=\"\"><summary>为什么是 \\(3/5\\)</summary>\n<div class=\"inside\">\n<p>可以把电子云看成总电荷 \\(-Ze\\)、半径 \\(r_0\\) 的均匀球。均匀球自能标准结果是</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        E_{\\rm self}=\\frac{3Q^2}{5r_0}.\n        \\]\n      </div>\n<p>这里 \\(Q^2=Z^2e^2\\)，电荷符号平方后为正，因此电子-电子排斥能为正。</p>\n</div>\n</details></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "7.4 电子-离子吸引能",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.4 电子-离子吸引能</h3><p>电子电荷密度</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\rho_e=-\\frac{Ze}{\\frac{4\\pi}{3}r_0^3}\n    =-\\frac{3Ze}{4\\pi r_0^3}.\n    \\]\n  </div><p>中心离子势能函数为 \\(Ze/r\\)。电子-离子相互作用能</p><div class=\"derivation\">\n<div class=\"formula-box math-scroll\">\n      \\[\n      E_{ei}=\\int_0^{r_0}\\rho_e\\frac{Ze}{r}\\,4\\pi r^2dr.\n      \\]\n    </div>\n<p>代入 \\(\\rho_e\\)：</p>\n<div class=\"formula-box math-scroll\">\n      \\[\n      E_{ei}=-\\frac{3Ze}{4\\pi r_0^3}Ze\\,4\\pi\\int_0^{r_0}r\\,dr.\n      \\]\n    </div>\n<p>积分 \\(\\int_0^{r_0}rdr=r_0^2/2\\)，所以</p>\n<div class=\"formula-box math-scroll\">\n      \\[\n      E_{ei}=-\\frac{3Z^2e^2}{r_0^3}\\frac{r_0^2}{2}\n      =-\\frac{3}{2}\\frac{Z^2e^2}{r_0}.\n      \\]\n    </div>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "7.5 原胞总静电能",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.5 原胞总静电能</h3><div class=\"formula-box math-scroll\">\n    \\[\n    E_{\\rm cell}=E_{ee}+E_{ei}\n    =\\frac{3}{5}\\frac{Z^2e^2}{r_0}-\\frac{3}{2}\\frac{Z^2e^2}{r_0}.\n    \\]\n  </div><p>通分：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{3}{5}-\\frac{3}{2}=\\frac{6-15}{10}=-\\frac{9}{10}.\n    \\]\n  </div><p>因此</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{E_{\\rm cell}=-\\frac{9}{10}\\frac{Z^2e^2}{r_0}}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "7.6 每个电子的静电能与压强修正",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.6 每个电子的静电能与压强修正</h3><p>每个电子平均静电能</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\epsilon_c=\\frac{E_{\\rm cell}}{Z}\n    =-\\frac{9}{10}\\frac{Ze^2}{r_0}.\n    \\]\n  </div><p>代入 \\(r_0^{-1}=\\left(4\\pi n_e/3Z\\right)^{1/3}\\)：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\epsilon_c=-\\frac{9}{10}Ze^2\\left(\\frac{4\\pi n_e}{3Z}\\right)^{1/3}\n    =-\\frac{9}{10}\\left(\\frac{4\\pi}{3}\\right)^{1/3}Z^{2/3}e^2n_e^{1/3}.\n    \\]\n  </div><p>压强可由</p><div class=\"formula-box math-scroll\">\n    \\[\n    P_c=n_e^2\\frac{d\\epsilon_c}{dn_e}\n    \\]\n  </div><p>得到。设</p><div class=\"formula-box math-scroll\">\n    \\[\n    C=\\frac{9}{10}\\left(\\frac{4\\pi}{3}\\right)^{1/3}Z^{2/3}e^2,\n    \\qquad\n    \\epsilon_c=-C n_e^{1/3}.\n    \\]\n  </div><p>则</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{d\\epsilon_c}{dn_e}=-\\frac{C}{3}n_e^{-2/3}.\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    P_c=n_e^2\\left(-\\frac{C}{3}n_e^{-2/3}\\right)\n    =-\\frac{C}{3}n_e^{4/3}.\n    \\]\n  </div><p>最终</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P_c=-\\frac{3}{10}\\left(\\frac{4\\pi}{3}\\right)^{1/3}Z^{2/3}e^2 n_e^{4/3}}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "7.7 与自由电子气比较",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>7.7 与自由电子气比较</h3><details open=\"\"><summary>ER 情形：相对修正是 \\(\\alpha\\) 量级</summary>\n<div class=\"inside\">\n<p>极端相对论自由电子气</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        P_0\\sim \\hbar c\\,n_e^{4/3}.\n        \\]\n      </div>\n<p>静电项</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        |P_c|\\sim Z^{2/3}e^2 n_e^{4/3}.\n        \\]\n      </div>\n<p>比值</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\frac{|P_c|}{P_0}\\sim Z^{2/3}\\frac{e^2}{\\hbar c}=Z^{2/3}\\alpha.\n        \\]\n      </div>\n<p>其中 \\(\\alpha\\) 是精细结构常数，所以是小修正。</p>\n</div>\n</details><details open=\"\"><summary>NR 情形：低密度下相对修正变大</summary>\n<div class=\"inside\">\n<p>非相对论自由电子气</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        P_0\\propto n_e^{5/3},\\qquad |P_c|\\propto n_e^{4/3}.\n        \\]\n      </div>\n<p>因此</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\frac{|P_c|}{P_0}\\propto n_e^{-1/3}.\n        \\]\n      </div>\n<p>密度越低，均匀电子背景假设越不可靠，这正是 Thomas-Fermi 模型登场的原因。</p>\n</div>\n</details></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "tf",
+    "label": "Thomas-Fermi",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：8. Thomas-Fermi 模型：局域费米球 + Poisson 方程",
+    "core": "低密度下，电子更倾向于围绕离子核分布，而不是在原胞里完全均匀铺开。于是电子数密度 \\(n_e(r)\\) 变成位置函数。Thomas-Fermi 模型的思想是：虽然整体不均匀，但在每个小体积元内，电子仍可近似为局域自由费米气。",
+    "steps": [
+      {
+        "title": "8.1 为什么 Wigner-Seitz 均匀模型会失效",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>8.1 为什么 Wigner-Seitz 均匀模型会失效</h3><p>低密度下，电子更倾向于围绕离子核分布，而不是在原胞里完全均匀铺开。于是电子数密度 \\(n_e(r)\\) 变成位置函数。Thomas-Fermi 模型的思想是：虽然整体不均匀，但在每个小体积元内，电子仍可近似为局域自由费米气。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "8.2 化学势处处相同",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>8.2 化学势处处相同</h3><p>设静电势为 \\(V(r)\\)。电子电荷为 \\(-e\\)，势能为 \\(-eV(r)\\)。局域费米面上的电子总能量为</p><div class=\"formula-box math-scroll\">\n    \\[\n    E_F=-eV(r)+\\frac{p_F(r)^2}{2m_e}.\n    \\]\n  </div><p>平衡时 \\(E_F\\) 不随位置变化。否则电子会从高化学势区域流向低化学势区域。</p><p>由上式解出局域费米动量：</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_F(r)=\\sqrt{2m_e\\left[E_F+eV(r)\\right]}.\n    \\]\n  </div><p>局域电子密度为</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_e(r)=\\frac{p_F(r)^3}{3\\pi^2\\hbar^3}\n    =\\frac{\\left\\{2m_e[E_F+eV(r)]\\right\\}^{3/2}}{3\\pi^2\\hbar^3}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "8.3 与 Poisson 方程联立",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>8.3 与 Poisson 方程联立</h3><p>静电势由电荷密度决定。除原点核电荷的 \\(\\delta\\) 项外，在 \\(r&gt;0\\) 区域有</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\nabla^2V=4\\pi e n_e(r).\n    \\]\n  </div><p>代入 \\(n_e(r)\\)，得到非线性微分方程：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\nabla^2V=\\frac{4\\pi e}{3\\pi^2\\hbar^3}\\left\\{2m_e[E_F+eV(r)]\\right\\}^{3/2}.\n    \\]\n  </div><p>对于球对称势，</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\nabla^2V=\\frac{1}{r^2}\\frac{d}{dr}\\left(r^2\\frac{dV}{dr}\\right).\n    \\]\n  </div><p>作适当无量纲变换后，可化成 Thomas-Fermi 方程的典型形式：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{d^2\\phi}{dx^2}=\\frac{\\phi^{3/2}}{\\sqrt{x}}.\n    \\]\n  </div><div class=\"exam\">\n<p><b>考试重点通常不是数值解：</b>要写清楚 TF 模型三件事：局域费米球、化学势处处相同、Poisson 方程自洽决定势场。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "npe",
+    "label": "n-p-e 混合气",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：9. n-p-e 混合费米气：beta 平衡与中子化",
+    "core": "\n    \\[\n    p+e^-\\rightarrow n+\\nu_e,\n    \\qquad\n    n\\rightarrow p+e^-+\\bar\\nu_e.\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "9.1 反应过程",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>9.1 反应过程</h3><p>高密度下，电子费米能升高，弱相互作用过程变得重要：</p><div class=\"formula-box math-scroll\">\n    \\[\n    p+e^-\\rightarrow n+\\nu_e,\n    \\qquad\n    n\\rightarrow p+e^-+\\bar\\nu_e.\n    \\]\n  </div><p>在白矮星/中子星外层的简化模型中，中微子容易逃逸，因此取</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\mu_\\nu\\simeq0.\n    \\]\n  </div><p>化学平衡条件为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{\\mu_n=\\mu_p+\\mu_e}.\n    \\]\n  </div><p>电中性要求</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{n_p=n_e}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "9.2 各组分的零温化学势",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>9.2 各组分的零温化学势</h3><p>对每种粒子 \\(i=e,p,n\\)，定义</p><div class=\"formula-box math-scroll\">\n    \\[\n    x_i=\\frac{p_{Fi}}{m_ic}.\n    \\]\n  </div><p>零温费米气的化学势等于费米面上单粒子总能量：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\mu_i=\\sqrt{m_i^2c^4+p_{Fi}^2c^2}\n    =m_ic^2\\sqrt{1+x_i^2}.\n    \\]\n  </div><p>数密度为</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_i=\\frac{p_{Fi}^3}{3\\pi^2\\hbar^3}\n    =\\frac{x_i^3}{3\\pi^2\\lambda_i^3},\n    \\qquad\n    \\lambda_i=\\frac{\\hbar}{m_ic}.\n    \\]\n  </div><p>电中性 \\(n_p=n_e\\) 等价于 \\(p_{Fp}=p_{Fe}\\)，因为两者自旋简并度相同：</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_{Fp}=p_{Fe}.\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    m_pcx_p=m_ecx_e\n    \\quad\\Longrightarrow\\quad\n    x_p=\\frac{m_e}{m_p}x_e.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "9.3 beta 平衡方程",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>9.3 beta 平衡方程</h3><p>把化学势写入 \\(\\mu_n=\\mu_p+\\mu_e\\)：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{m_nc^2\\sqrt{1+x_n^2}\n    =m_pc^2\\sqrt{1+x_p^2}+m_ec^2\\sqrt{1+x_e^2}}.\n    \\]\n  </div><p>再加上</p><div class=\"formula-box math-scroll\">\n    \\[\n    x_p=\\frac{m_e}{m_p}x_e,\n    \\qquad\n    n_b=n_p+n_n,\n    \\]\n  </div><p>就可以在给定总重子数密度 \\(n_b\\) 时求 \\(x_e,x_p,x_n\\)。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "9.4 中子化阈值：\\(x_n=0\\)",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>9.4 中子化阈值：\\(x_n=0\\)</h3><p>中子刚开始出现时，中子费米动量为零：</p><div class=\"formula-box math-scroll\">\n    \\[\n    x_n=0,\n    \\qquad\n    \\mu_n=m_nc^2.\n    \\]\n  </div><p>beta 平衡变成</p><div class=\"formula-box math-scroll\">\n    \\[\n    m_nc^2=m_pc^2\\sqrt{1+x_p^2}+m_ec^2\\sqrt{1+x_e^2}.\n    \\]\n  </div><p>由于 \\(m_e/m_p\\ll1\\)，在阈值附近质子通常非相对论，\\(x_p\\ll1\\)，取</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\sqrt{1+x_p^2}\\simeq1.\n    \\]\n  </div><p>于是</p><div class=\"formula-box math-scroll\">\n    \\[\n    m_nc^2\\simeq m_pc^2+m_ec^2\\sqrt{1+x_e^2}.\n    \\]\n  </div><p>定义</p><div class=\"formula-box math-scroll\">\n    \\[\n    Q=(m_n-m_p)c^2\\simeq1.293\\,\\mathrm{MeV}.\n    \\]\n  </div><p>则</p><div class=\"formula-box math-scroll\">\n    \\[\n    m_ec^2\\sqrt{1+x_e^2}\\simeq Q.\n    \\]\n  </div><p>解出</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\sqrt{1+x_e^2}=\\frac{Q}{m_ec^2},\n    \\qquad\n    \\boxed{x_e=\\sqrt{\\left(\\frac{Q}{m_ec^2}\\right)^2-1}}.\n    \\]\n  </div><p>阈值电子数密度为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{n_{e,\\rm thr}=\\frac{x_e^3}{3\\pi^2\\lambda_C^3}},\n    \\qquad\n    \\lambda_C=\\frac{\\hbar}{m_ec}.\n    \\]\n  </div><p>对应质量密度量级</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\rho_{\\rm thr}\\sim10^7\\,\\mathrm{g/cm^3}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "9.5 n-p-e 的状态方程计算流程",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>9.5 n-p-e 的状态方程计算流程</h3><p>每种组分的压强都可用一般零温费米气公式：</p><div class=\"formula-box math-scroll\">\n    \\[\n    P_i(x_i)=\\frac{m_i^4c^5}{24\\pi^2\\hbar^3}A(x_i),\n    \\]\n    \\[\n    A(x)=x(2x^2-3)\\sqrt{1+x^2}+3\\operatorname{asinh}x.\n    \\]\n  </div><p>总压强</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P=P_e(x_e)+P_p(x_p)+P_n(x_n)}.\n    \\]\n  </div><p>能量密度也逐组分相加：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\epsilon_i=\\frac{m_i^4c^5}{8\\pi^2\\hbar^3}\n    \\left[x_i(2x_i^2+1)\\sqrt{1+x_i^2}-\\operatorname{asinh}x_i\\right].\n    \\]\n  </div><p>给定 \\(n_b\\) 的求解流程：</p><ol>\n<li>用电中性 \\(n_p=n_e\\) 得 \\(p_{Fp}=p_{Fe}\\)。</li>\n<li>用 beta 平衡 \\(\\mu_n=\\mu_p+\\mu_e\\)。</li>\n<li>用总重子密度 \\(n_b=n_p+n_n\\)。</li>\n<li>解出 \\(x_e,x_p,x_n\\)。</li>\n<li>代入 \\(P_i(x_i)\\) 与 \\(\\epsilon_i(x_i)\\) 得 EOS。</li>\n</ol></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "9.6 高密度极端相对论极限：为什么中子占主导",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>9.6 高密度极端相对论极限：为什么中子占主导</h3><p>若三种粒子都极端相对论，化学势近似为 \\(\\mu_i\\simeq p_{Fi}c\\)。beta 平衡给出</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_{Fn}c\\simeq p_{Fp}c+p_{Fe}c.\n    \\]\n  </div><p>电中性又给出 \\(p_{Fp}=p_{Fe}\\)，所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    p_{Fn}\\simeq2p_{Fp}.\n    \\]\n  </div><p>由于 \\(n\\propto p_F^3\\)，得到</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_n\\simeq 2^3n_p=8n_p.\n    \\]\n  </div><p>总重子数</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_b=n_n+n_p\\simeq9n_p,\n    \\qquad\n    \\boxed{Y_p=\\frac{n_p}{n_b}\\simeq\\frac{1}{9}}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "nuclear_eos",
+    "label": "核物质 EOS",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：10. Harrison-Wheeler / BPS 型核物质 EOS",
+    "core": "真实致密星外壳不是纯自由 \\(n,p,e\\) 气体，而是“原子核 + 电子气 + 自由中子”的混合体系。原因是：",
+    "steps": [
+      {
+        "title": "10.1 为什么自由 n-p-e 还不够",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>10.1 为什么自由 n-p-e 还不够</h3><p>真实致密星外壳不是纯自由 \\(n,p,e\\) 气体，而是“原子核 + 电子气 + 自由中子”的混合体系。原因是：</p><ul>\n<li>核力短程且饱和，原子核不能无限长大；</li>\n<li>库仑排斥限制大 \\(Z\\) 原子核的稳定性；</li>\n<li>高密度下 beta 平衡推动原子核富中子；</li>\n<li>密度进一步升高后，中子从核中滴出，形成自由中子气。</li>\n</ul></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "10.2 总能量密度",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>10.2 总能量密度</h3><p>设原子核数密度为 \\(n_N\\)，核质量数和电荷数为 \\(A,Z\\)，自由中子数密度为 \\(n_n\\)。总能量密度可写成</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{\\epsilon=n_NM(A,Z)c^2+\\epsilon_e(n_e)+\\epsilon_n(n_n)}.\n    \\]\n  </div><p>电中性：</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_e=Zn_N.\n    \\]\n  </div><p>总重子数密度：</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_b=An_N+n_n.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "10.3 半经验质量公式",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>10.3 半经验质量公式</h3><p>核质量可写为</p><div class=\"formula-box math-scroll\">\n    \\[\n    M(A,Z)c^2=(A-Z)m_nc^2+Z(m_p+m_e)c^2-AE_b.\n    \\]\n  </div><p>结合能的液滴模型结构为</p><div class=\"formula-box math-scroll\">\n    \\[\n    AE_b\\sim a_vA-a_sA^{2/3}-a_c\\frac{Z^2}{A^{1/3}}-a_aA\\left(1-\\frac{2Z}{A}\\right)^2+\\cdots.\n    \\]\n  </div><table>\n<thead><tr><th>项</th><th>形式</th><th>物理意义</th></tr></thead>\n<tbody>\n<tr><td>体积能</td><td>\\(a_vA\\)</td><td>核力饱和，体积内核子贡献近似正比 \\(A\\)</td></tr>\n<tr><td>表面能</td><td>\\(-a_sA^{2/3}\\)</td><td>表面核子配位数少，类似液滴表面张力</td></tr>\n<tr><td>库仑能</td><td>\\(-a_cZ^2/A^{1/3}\\)</td><td>质子间排斥使大 \\(Z\\) 不稳定</td></tr>\n<tr><td>对称能</td><td>\\(-a_aA(1-2Z/A)^2\\)</td><td>中子数和质子数差太大要付出能量</td></tr>\n</tbody>\n</table></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "10.4 变分条件",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>10.4 变分条件</h3><p>固定 \\(n_b\\) 时，让 \\(\\epsilon\\) 对 \\(A,Z,n_n\\) 等变量极小，就得到平衡组成。形式上</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{\\partial\\epsilon}{\\partial Z}=0,\n    \\qquad\n    \\frac{\\partial\\epsilon}{\\partial A}=0,\n    \\qquad\n    \\frac{\\partial\\epsilon}{\\partial n_n}=0.\n    \\]\n  </div><p>物理意义分别是：</p><ul>\n<li>\\(Z\\) 方向极小化：beta 平衡，决定核中质子比例；</li>\n<li>\\(A\\) 方向极小化：决定最稳定核大小；</li>\n<li>\\(n_n\\) 方向极小化：自由中子与核内中子达到化学平衡。</li>\n</ul><div class=\"exam\">\n<p><b>中子滴出条件：</b>核内中子的化学势达到自由中子费米面的化学势。之后再压缩，多出来的中子不再全部束缚在核内。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "friedmann",
+    "label": "Friedmann 热史",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：11. 热大爆炸宇宙学：Friedmann 方程与能量守恒",
+    "core": "\n    \\[\n    ds^2=-dt^2+R(t)^2\\left[\\frac{dr^2}{1-kr^2}+r^2d\\Omega^2\\right].\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "11.1 均匀各向同性宇宙",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>11.1 均匀各向同性宇宙</h3><p>宇宙学原理假设大尺度上宇宙均匀、各向同性。Robertson-Walker 度规为</p><div class=\"formula-box math-scroll\">\n    \\[\n    ds^2=-dt^2+R(t)^2\\left[\\frac{dr^2}{1-kr^2}+r^2d\\Omega^2\\right].\n    \\]\n  </div><p>这里 \\(R(t)\\) 是尺度因子，\\(k\\) 表示空间曲率。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "11.2 Friedmann 方程",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>11.2 Friedmann 方程</h3><p>把 RW 度规和理想流体能动张量代入 Einstein 方程，可得</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{H^2+\\frac{k}{R^2}=\\frac{8\\pi G}{3}\\rho},\n    \\qquad\n    H=\\frac{\\dot R}{R}.\n    \\]\n  </div><p>第二个方程为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{\\frac{\\ddot R}{R}=-\\frac{4\\pi G}{3}(\\rho+3P)}.\n    \\]\n  </div><p>注意压强也作为引力源出现，表现为 \\(\\rho+3P\\)。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "11.3 连续性方程的推导",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>11.3 连续性方程的推导</h3><p>从第一 Friedmann 方程</p><div class=\"formula-box math-scroll\">\n    \\[\n    H^2+\\frac{k}{R^2}=\\frac{8\\pi G}{3}\\rho\n    \\]\n  </div><p>对时间求导：</p><div class=\"formula-box math-scroll\">\n    \\[\n    2H\\dot H-2k\\frac{\\dot R}{R^3}=\\frac{8\\pi G}{3}\\dot\\rho.\n    \\]\n  </div><p>因为 \\(H=\\dot R/R\\)，有</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\dot H=\\frac{\\ddot R}{R}-H^2.\n    \\]\n  </div><p>代入并结合第二 Friedmann 方程，整理得到</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{\\dot\\rho+3H(\\rho+P)=0}.\n    \\]\n  </div><p>把 \\(H=\\dot R/R\\) 代入：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\dot\\rho+3\\frac{\\dot R}{R}(\\rho+P)=0.\n    \\]\n  </div><p>两边乘以 \\(R^3dt\\)：</p><div class=\"formula-box math-scroll\">\n    \\[\n    R^3d\\rho+3R^2dR(\\rho+P)=0.\n    \\]\n  </div><p>展开 \\(d(\\rho R^3)\\)：</p><div class=\"formula-box math-scroll\">\n    \\[\n    d(\\rho R^3)=R^3d\\rho+3\\rho R^2dR.\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    R^3d\\rho+3R^2dR(\\rho+P)\n    =d(\\rho R^3)+P\\,d(R^3)=0.\n    \\]\n  </div><p>最终</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{d(\\rho R^3)=-P\\,d(R^3)}.\n    \\]\n  </div><p>这就是膨胀宇宙中的能量守恒形式。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "11.4 物质与辐射的标度",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>11.4 物质与辐射的标度</h3><details open=\"\"><summary>非相对论物质：\\(P\\simeq0\\)</summary>\n<div class=\"inside\">\n<div class=\"formula-box math-scroll\">\n        \\[\n        d(\\rho_mR^3)=0\n        \\quad\\Longrightarrow\\quad\n        \\rho_mR^3=\\text{const}.\n        \\]\n      </div>\n<p>因此</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\boxed{\\rho_m\\propto R^{-3}}.\n        \\]\n      </div>\n<p>这只是体积膨胀导致数密度稀释。</p>\n</div>\n</details><details open=\"\"><summary>辐射：\\(P=\\rho/3\\)</summary>\n<div class=\"inside\">\n<p>代入连续性方程：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        d(\\rho_rR^3)=-\\frac{\\rho_r}{3}d(R^3).\n        \\]\n      </div>\n<p>展开：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        R^3d\\rho_r+3\\rho_rR^2dR=-\\rho_rR^2dR.\n        \\]\n      </div>\n<p>移项：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        R^3d\\rho_r+4\\rho_rR^2dR=0.\n        \\]\n      </div>\n<p>除以 \\(\\rho_rR^3\\)：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\frac{d\\rho_r}{\\rho_r}+4\\frac{dR}{R}=0.\n        \\]\n      </div>\n<p>积分：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\ln\\rho_r+4\\ln R=\\text{const}\n        \\quad\\Longrightarrow\\quad\n        \\boxed{\\rho_rR^4=\\text{const}}.\n        \\]\n      </div>\n<p>因此</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\boxed{\\rho_r\\propto R^{-4}}.\n        \\]\n      </div>\n</div>\n</details><p>黑体辐射满足 \\(\\rho_r\\propto T^4\\)，所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    T^4\\propto R^{-4}\n    \\quad\\Longrightarrow\\quad\n    \\boxed{T\\propto R^{-1}}.\n    \\]\n  </div><div class=\"exam\">\n<p><b>考试解释：</b>辐射的 \\(R^{-4}\\) 中，\\(R^{-3}\\) 来自体积稀释，额外 \\(R^{-1}\\) 来自光子红移。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "rel_particles",
+    "label": "相对论粒子气",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：12. 早期宇宙中的相对论粒子气体",
+    "core": "在早期宇宙，温度很高，许多粒子是极端相对论的。常取自然单位 \\(\\hbar=c=k_B=1\\)。",
+    "steps": [
+      {
+        "title": "第 1 部分",
+        "formulas": [
+          "<div class='astro-note-wrapper'><p>在早期宇宙，温度很高，许多粒子是极端相对论的。常取自然单位 \\(\\hbar=c=k_B=1\\)。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "12.1 分布函数",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>12.1 分布函数</h3><p>极端相对论下 \\(E=p\\)。化学势可近似为零时，分布函数为</p><div class=\"formula-box math-scroll\">\n    \\[\n    f(p)=\\frac{1}{e^{p/T}\\pm1},\n    \\]\n  </div><p>其中</p><div class=\"formula-box math-scroll\">\n    \\[\n    +:\\text{Fermi-Dirac},\n    \\qquad\n    -:\\text{Bose-Einstein}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "12.2 数密度",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>12.2 数密度</h3><p>对简并度为 \\(g\\) 的粒子，数密度</p><div class=\"formula-box math-scroll\">\n    \\[\n    n=g\\int\\frac{d^3p}{(2\\pi)^3}f(p)\n    =\\frac{g}{2\\pi^2}\\int_0^\\infty \\frac{p^2dp}{e^{p/T}\\pm1}.\n    \\]\n  </div><p>令 \\(x=p/T\\)，\\(dp=Tdx\\)：</p><div class=\"formula-box math-scroll\">\n    \\[\n    n=\\frac{gT^3}{2\\pi^2}\\int_0^\\infty \\frac{x^2dx}{e^x\\pm1}.\n    \\]\n  </div><p>标准积分给出</p><div class=\"formula-box math-scroll\">\n    \\[\n    n_B=\\frac{\\zeta(3)}{\\pi^2}gT^3,\n    \\qquad\n    n_F=\\frac{3}{4}\\frac{\\zeta(3)}{\\pi^2}gT^3.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "12.3 能量密度与 \\(7/8\\)",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>12.3 能量密度与 \\(7/8\\)</h3><p>能量密度</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\rho=g\\int\\frac{d^3p}{(2\\pi)^3}E(p)f(p)\n    =\\frac{g}{2\\pi^2}\\int_0^\\infty\\frac{p^3dp}{e^{p/T}\\pm1}.\n    \\]\n  </div><p>同样令 \\(x=p/T\\)：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\rho=\\frac{gT^4}{2\\pi^2}\\int_0^\\infty\\frac{x^3dx}{e^x\\pm1}.\n    \\]\n  </div><p>标准结果：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\int_0^\\infty\\frac{x^3dx}{e^x-1}=\\frac{\\pi^4}{15},\n    \\qquad\n    \\int_0^\\infty\\frac{x^3dx}{e^x+1}=\\frac{7}{8}\\frac{\\pi^4}{15}.\n    \\]\n  </div><p>因此</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{\\rho_B=\\frac{\\pi^2}{30}gT^4},\n    \\qquad\n    \\boxed{\\rho_F=\\frac{7}{8}\\frac{\\pi^2}{30}gT^4}.\n    \\]\n  </div><p>定义有效自由度</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{g_*=\\sum_{\\rm boson}g_B+\\frac{7}{8}\\sum_{\\rm fermion}g_F},\n    \\qquad\n    \\boxed{\\rho=\\frac{\\pi^2}{30}g_*T^4}.\n    \\]\n  </div><p>相对论粒子满足</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{P=\\frac{\\rho}{3}}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "time_temp",
+    "label": "温度-时间关系",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：13. 辐射主导宇宙中的温度-时间关系",
+    "core": "平直宇宙 \\(k=0\\)，辐射主导：",
+    "steps": [
+      {
+        "title": "13.1 从 Friedmann 方程出发",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>13.1 从 Friedmann 方程出发</h3><p>平直宇宙 \\(k=0\\)，辐射主导：</p><div class=\"formula-box math-scroll\">\n    \\[\n    H^2=\\frac{8\\pi G}{3}\\rho_r,\n    \\qquad\n    \\rho_r=\\frac{\\pi^2}{30}g_*T^4.\n    \\]\n  </div><p>代入：</p><div class=\"formula-box math-scroll\">\n    \\[\n    H^2=\\frac{8\\pi G}{3}\\frac{\\pi^2}{30}g_*T^4\n    =\\frac{4\\pi^3G}{45}g_*T^4.\n    \\]\n  </div><p>所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    H\\propto T^2.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "13.2 为什么 \\(T\\propto t^{-1/2}\\)",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>13.2 为什么 \\(T\\propto t^{-1/2}\\)</h3><p>辐射主导时 \\(\\rho\\propto R^{-4}\\)。又由 Friedmann 方程 \\(H^2\\propto\\rho\\)，得</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\left(\\frac{\\dot R}{R}\\right)^2\\propto R^{-4}.\n    \\]\n  </div><p>取正膨胀支：</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{\\dot R}{R}\\propto R^{-2}\n    \\quad\\Longrightarrow\\quad\n    \\dot R\\propto R^{-1}.\n    \\]\n  </div><p>于是</p><div class=\"formula-box math-scroll\">\n    \\[\n    R\\,dR\\propto dt\n    \\quad\\Longrightarrow\\quad\n    R^2\\propto t.\n    \\]\n  </div><p>因此</p><div class=\"formula-box math-scroll\">\n    \\[\n    R(t)\\propto t^{1/2}.\n    \\]\n  </div><p>又 \\(T\\propto R^{-1}\\)，所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{T\\propto t^{-1/2}}.\n    \\]\n  </div><p>量级记忆：</p><div class=\"formula-box math-scroll\">\n    \\[\n    T\\sim1\\,\\mathrm{MeV}\\quad\\Longleftrightarrow\\quad t\\sim1\\,\\mathrm{s}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "decoupling",
+    "label": "粒子退耦",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：14. 粒子退耦：\\(\\Gamma\\) 与 \\(H\\) 的比较",
+    "core": "14. 粒子退耦：\\(\\Gamma\\) 与 \\(H\\) 的比较",
+    "steps": [
+      {
+        "title": "14.1 平衡条件",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>14.1 平衡条件</h3><p>膨胀宇宙中，一个粒子种类要保持热平衡，碰撞必须足够频繁。碰撞率为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Gamma=n\\langle\\sigma v\\rangle.\n    \\]\n  </div><p>宇宙膨胀率为</p><div class=\"formula-box math-scroll\">\n    \\[\n    H=\\frac{\\dot R}{R}.\n    \\]\n  </div><p>若</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Gamma\\gg H,\n    \\]\n  </div><p>则在宇宙明显膨胀前，粒子已经发生很多次碰撞，热平衡可以维持。若</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Gamma\\lesssim H,\n    \\]\n  </div><p>碰撞跟不上膨胀，粒子退耦或反应冻结。退耦条件常估算为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{\\Gamma(T_{\\rm dec})\\simeq H(T_{\\rm dec})}.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "14.2 中微子退耦估算",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>14.2 中微子退耦估算</h3><p>弱相互作用截面量级</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\sigma\\sim G_F^2T^2.\n    \\]\n  </div><p>相对论粒子数密度</p><div class=\"formula-box math-scroll\">\n    \\[\n    n\\sim T^3.\n    \\]\n  </div><p>速度 \\(v\\sim c=1\\)，所以</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\Gamma\\sim n\\sigma v\\sim G_F^2T^5.\n    \\]\n  </div><p>辐射主导时</p><div class=\"formula-box math-scroll\">\n    \\[\n    H\\sim \\frac{T^2}{M_{\\rm Pl}}.\n    \\]\n  </div><p>令二者相等：</p><div class=\"formula-box math-scroll\">\n    \\[\n    G_F^2T_{\\rm dec}^5\\sim \\frac{T_{\\rm dec}^2}{M_{\\rm Pl}}.\n    \\]\n  </div><p>化简：</p><div class=\"formula-box math-scroll\">\n    \\[\n    T_{\\rm dec}^3\\sim \\frac{1}{G_F^2M_{\\rm Pl}}.\n    \\]\n  </div><p>因此</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{T_{\\rm dec}\\sim \\left(G_F^2M_{\\rm Pl}\\right)^{-1/3}\\sim1\\,\\mathrm{MeV}}.\n    \\]\n  </div><div class=\"exam\">\n<p><b>物理解释：</b>温度下降时 \\(\\Gamma/H\\sim T^3\\) 迅速变小，所以弱相互作用会在 MeV 量级冻结。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "cmb_bbn",
+    "label": "CMB 与 BBN",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：15. 光子退耦、复合与原初核合成",
+    "core": "\n    \\[\n    \\gamma+e^-\\leftrightarrow\\gamma+e^- \\quad\\text{Thomson scattering},\n    \\]\n  ",
+    "steps": [
+      {
+        "title": "15.1 光子退耦与 CMB",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>15.1 光子退耦与 CMB</h3><p>光子和物质耦合主要通过</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\gamma+e^-\\leftrightarrow\\gamma+e^- \\quad\\text{Thomson scattering},\n    \\]\n  </div><p>以及电离/复合过程</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\gamma+H\\leftrightarrow e^-+p.\n    \\]\n  </div><p>直觉上可能以为当 \\(T\\sim13.6\\,\\mathrm{eV}\\) 时氢就复合，因为氢电离能是 \\(13.6\\,\\mathrm{eV}\\)。但实际复合温度低很多，原因是：</p><ul>\n<li>光子数远大于重子数，\\(n_\\gamma/n_b\\sim10^9\\)；</li>\n<li>即使平均能量低，Planck 分布高能尾部仍有少量高能光子；</li>\n<li>只要高能尾部乘上巨大光子数还能电离氢，复合就会推迟。</li>\n</ul><p>Saha 电离平衡的核心形式为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{n_pn_e}{n_H}\\propto T^{3/2}e^{-13.6\\,\\mathrm{eV}/T}.\n    \\]\n  </div><p>自由电子数骤降后，Thomson 散射率下降，光子平均自由程变长，光子退耦，形成 CMB。</p></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      },
+      {
+        "title": "15.2 原初核合成 BBN 的核心逻辑",
+        "formulas": [
+          "<div class='astro-note-wrapper'><h3>15.2 原初核合成 BBN 的核心逻辑</h3><div class=\"timeline\">\n<div class=\"titem\"><strong>高温阶段</strong><span>中子和质子通过弱相互作用保持平衡。</span></div>\n<div class=\"titem\"><strong>弱冻结</strong><span>温度降到 \\(T\\sim0.8\\,\\mathrm{MeV}\\) 左右，弱相互作用跟不上膨胀，\\(n/p\\) 比冻结。</span></div>\n<div class=\"titem\"><strong>等待氘稳定</strong><span>光子太多会打碎氘核，所以有效核合成要到 \\(T\\sim0.1\\,\\mathrm{MeV}\\) 左右。</span></div>\n<div class=\"titem\"><strong>He-4 形成</strong><span>幸存中子几乎全部进入 He-4，决定原初氦丰度。</span></div>\n</div><p>平衡时中子质子数比近似</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\frac{n_n}{n_p}\\simeq e^{-(m_n-m_p)c^2/T}.\n    \\]\n  </div><p>设核合成开始时 \\(r=n_n/n_p\\)，若幸存中子几乎全部进入 He-4，则氦质量分数近似为</p><div class=\"formula-box math-scroll\">\n    \\[\n    \\boxed{Y_{\\rm He}\\simeq\\frac{2r}{1+r}}.\n    \\]\n  </div><p>典型结果约为</p><div class=\"formula-box math-scroll\">\n    \\[\n    Y_{\\rm He}\\sim0.25.\n    \\]\n  </div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "templates",
+    "label": "考题模板",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：16. 考试推导模板",
+    "core": "写相空间计数：\\(N=2\\frac{V}{h^3}\\frac{4\\pi}{3}p_F^3\\)。",
+    "steps": [
+      {
+        "title": "完整内容",
+        "formulas": [
+          "<div class='astro-note-wrapper'><details open=\"\"><summary>模板 1：零温电子气简并压</summary>\n<div class=\"inside\">\n<ol>\n<li>写相空间计数：\\(N=2\\frac{V}{h^3}\\frac{4\\pi}{3}p_F^3\\)。</li>\n<li>化成 \\(p_F=\\hbar(3\\pi^2n_e)^{1/3}\\)。</li>\n<li>NR：\\(E_F=p_F^2/2m_e\\)，积分得 \\(\\langle E\\rangle=3E_F/5\\)。</li>\n<li>\\(U=3NE_F/5\\)，因 \\(U\\propto V^{-2/3}\\)，\\(P=2U/3V\\)。</li>\n<li>结论：\\(P_{NR}=\\frac{\\hbar^2}{5m_e}(3\\pi^2)^{2/3}n_e^{5/3}\\)。</li>\n<li>ER：\\(E_F=p_Fc\\)，积分得 \\(\\langle E\\rangle=3E_F/4\\)。</li>\n<li>\\(U=3Np_Fc/4\\)，因 \\(U\\propto V^{-1/3}\\)，\\(P=U/3V\\)。</li>\n<li>结论：\\(P_{ER}=\\frac{\\hbar c}{4}(3\\pi^2)^{1/3}n_e^{4/3}\\)。</li>\n</ol>\n</div>\n</details><details open=\"\"><summary>模板 2：钱德拉塞卡极限</summary>\n<div class=\"inside\">\n<div class=\"formula-box math-scroll\">\n        \\[\n        N_e\\sim\\frac{M}{\\mu_em_p},\\qquad p_F\\sim\\frac{\\hbar N_e^{1/3}}{R}.\n        \\]\n      </div>\n<p>NR：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        E_{kin}\\sim N_e\\frac{p_F^2}{2m_e}\\sim\\frac{M^{5/3}}{R^2},\n        \\qquad E_g\\sim-\\frac{GM^2}{R}.\n        \\]\n      </div>\n<p>有稳定极小值，\\(R\\propto M^{-1/3}\\)。</p>\n<p>ER：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        E_{kin}\\sim N_ep_Fc\\sim\\frac{M^{4/3}}{R},\n        \\qquad\n        E(R)=\\frac{AM^{4/3}-BGM^2}{R}.\n        \\]\n      </div>\n<p>临界质量：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        M_{Ch}\\sim\\frac{(\\hbar c/G)^{3/2}}{\\mu_e^2m_p^2}.\n        \\]\n      </div>\n</div>\n</details><details open=\"\"><summary>模板 3：Wigner-Seitz 静电修正</summary>\n<div class=\"inside\">\n<div class=\"formula-box math-scroll\">\n        \\[\n        r_0=\\left(\\frac{3Z}{4\\pi n_e}\\right)^{1/3}.\n        \\]\n      </div>\n<div class=\"formula-box math-scroll\">\n        \\[\n        E_{ee}=\\frac{3}{5}\\frac{Z^2e^2}{r_0},\n        \\qquad\n        E_{ei}=-\\frac{3}{2}\\frac{Z^2e^2}{r_0}.\n        \\]\n      </div>\n<div class=\"formula-box math-scroll\">\n        \\[\n        E_{cell}=-\\frac{9}{10}\\frac{Z^2e^2}{r_0},\n        \\qquad\n        P_c=-\\frac{3}{10}\\left(\\frac{4\\pi}{3}\\right)^{1/3}Z^{2/3}e^2n_e^{4/3}.\n        \\]\n      </div>\n<p>结论：\\(P_c&lt;0\\)，EOS 软化。</p>\n</div>\n</details><details open=\"\"><summary>模板 4：beta 平衡与中子化阈值</summary>\n<div class=\"inside\">\n<div class=\"formula-box math-scroll\">\n        \\[\n        p+e^-\\leftrightarrow n+\\nu_e,\n        \\qquad \\mu_\\nu\\simeq0.\n        \\]\n      </div>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\mu_n=\\mu_p+\\mu_e,\n        \\qquad n_p=n_e.\n        \\]\n      </div>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\mu_i=m_ic^2\\sqrt{1+x_i^2}.\n        \\]\n      </div>\n<p>阈值时 \\(x_n=0\\)，并取 \\(x_p\\ll1\\)：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        m_ec^2\\sqrt{1+x_e^2}\\simeq(m_n-m_p)c^2=Q.\n        \\]\n      </div>\n<div class=\"formula-box math-scroll\">\n        \\[\n        x_e=\\sqrt{\\left(\\frac{Q}{m_ec^2}\\right)^2-1},\n        \\qquad\n        n_e=\\frac{x_e^3}{3\\pi^2\\lambda_C^3}.\n        \\]\n      </div>\n</div>\n</details><details open=\"\"><summary>模板 5：宇宙辐射标度与退耦</summary>\n<div class=\"inside\">\n<div class=\"formula-box math-scroll\">\n        \\[\n        d(\\rho R^3)=-P\\,d(R^3).\n        \\]\n      </div>\n<p>辐射 \\(P=\\rho/3\\)：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        d(\\rho R^3)=-\\frac{\\rho}{3}d(R^3)\n        \\Rightarrow \\rho R^4=\\text{const}.\n        \\]\n      </div>\n<p>黑体 \\(\\rho\\propto T^4\\)：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        T\\propto R^{-1}.\n        \\]\n      </div>\n<p>退耦条件：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\Gamma=n\\langle\\sigma v\\rangle,\n        \\qquad\n        \\Gamma\\simeq H.\n        \\]\n      </div>\n<p>中微子：</p>\n<div class=\"formula-box math-scroll\">\n        \\[\n        \\Gamma\\sim G_F^2T^5,\n        \\qquad H\\sim T^2/M_{Pl},\n        \\qquad T_{dec}\\sim1\\,\\mathrm{MeV}.\n        \\]\n      </div>\n</div>\n</details></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  },
+  {
+    "id": "checklist",
+    "label": "自检题",
+    "exam": "八个 MP4 天体物理专题",
+    "summary": "已将新整理的详细考试笔记嵌入本节：17. 考前自检题",
+    "core": "从周期边界条件出发，推导每个态在动量空间占据体积 \\(h^3/V\\)。",
+    "steps": [
+      {
+        "title": "完整内容",
+        "formulas": [
+          "<div class='astro-note-wrapper'><ol>\n<li>从周期边界条件出发，推导每个态在动量空间占据体积 \\(h^3/V\\)。</li>\n<li>从费米球计数推出 \\(p_F=\\hbar(3\\pi^2n_e)^{1/3}\\)。</li>\n<li>完整推导非相对论平均能量 \\(\\langle E\\rangle=3E_F/5\\)。</li>\n<li>完整推导极端相对论平均能量 \\(\\langle E\\rangle=3E_F/4\\)。</li>\n<li>说明 \\(P_{NR}=2U/3V\\) 与 \\(P_{ER}=U/3V\\) 分别来自什么体积标度。</li>\n<li>用 \\(E(R)=AM^{5/3}/R^2-BGM^2/R\\) 推出 \\(R\\propto M^{-1/3}\\)。</li>\n<li>用 \\(E(R)=[AM^{4/3}-BGM^2]/R\\) 推出为什么存在 \\(M_{Ch}\\)。</li>\n<li>逐步推导 Wigner-Seitz 原胞的 \\(E_{cell}=-9Z^2e^2/(10r_0)\\)。</li>\n<li>从 \\(\\epsilon_c\\propto-n_e^{1/3}\\) 推出 \\(P_c\\propto-n_e^{4/3}\\)。</li>\n<li>解释为什么静电修正会软化 EOS。</li>\n<li>写出 Thomas-Fermi 模型的三条核心假设。</li>\n<li>从反应 \\(p+e^-\\leftrightarrow n+\\nu_e\\) 推出 \\(\\mu_n=\\mu_p+\\mu_e\\)。</li>\n<li>推导中子化阈值公式 \\(x_e=\\sqrt{(Q/m_ec^2)^2-1}\\)。</li>\n<li>在高密度 ER 极限下推出 \\(Y_p\\simeq1/9\\)。</li>\n<li>由 Friedmann 方程和连续性方程推出 \\(d(\\rho R^3)=-P d(R^3)\\)。</li>\n<li>从辐射 \\(P=\\rho/3\\) 推出 \\(\\rho R^4=\\text{const}\\)。</li>\n<li>从 \\(\\rho\\propto T^4\\) 推出 \\(T\\propto R^{-1}\\)。</li>\n<li>从 \\(\\Gamma=n\\langle\\sigma v\\rangle\\) 和 \\(H\\) 比较解释退耦条件。</li>\n<li>推导中微子退耦量级 \\(T_{dec}\\sim1\\,\\mathrm{MeV}\\)。</li>\n<li>说明为什么光子退耦不能简单用 \\(T=13.6\\,\\mathrm{eV}\\) 判断。</li>\n</ol><div class=\"exam\">\n<p><b>最低目标：</b>不看笔记能写出模板 1、2、3、4、5。只背最终公式，在这种推导课里基本等于把答题纸献祭给阅卷老师。</p>\n</div></div>"
+        ],
+        "notes": [
+          "这一部分已经把原视频/笔记中的公式按推导顺序展开，不是只列结论。",
+          "手机端若公式较长，直接在公式区域左右滑动。"
+        ],
+        "exam": "考试写法：按“假设 → 公式来源 → 中间代数 → 结论 → 适用条件”顺序写，别把最后一行当成整段推导。"
+      }
+    ]
+  }
+];
+})();
