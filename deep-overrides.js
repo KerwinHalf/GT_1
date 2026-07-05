@@ -3,6 +3,7 @@
   const T = (id, label, exam, summary, core, steps) => ({ id, label, exam, summary, core, steps });
   const S = (title, formulas, notes, exam) => ({ title, formulas, notes, exam });
   const E = (n, eq, why) => `<span class='eq'><span class='mini'>${n}</span>${eq}</span><span class='why'>${why}</span>`;
+  const X = (n, tex, why) => E(n, `<span class='math-tex'>\\[${tex}\\]</span>`, why);
   const findSection = (id) => DATA.find((x) => x.id === id);
   const setTopic = (sectionId, topicId, topic) => {
     const sec = findSection(sectionId);
@@ -712,5 +713,415 @@
       "完整 BBN 板书链条是：弱平衡 → 冻结 → 中子衰变 → 氘瓶颈 → He-4 丰度。",
       "只写 Yp≈1/4 是结论，不是推导。"
     ], "必须写 nHe=nn/2 和 Yp=2r/(1+r)。")
+  ]));
+  setTopic("quantum", "bec", T("bec", "理想 Bose 气与 BEC：讲义128-141页逐步推导", "讲义128-141页 / 考试要求13", "从 Bose 分布、零能级宏观占据、激发态最大容纳数、临界温度、凝聚分数到低温热容，按讲义每一步展开。", "T&lt;T<sub>c</sub> 时 μ≈0，N<sub>0</sub>/N=1-(T/T<sub>c</sub>)<sup>3/2</sup>", [
+    S("01 BEC 的物理图像：把零动量算符当作宏观数", [
+      E("1.1", "场算符展开：ψ(r)=V<sup>-1/2</sup>Σ<sub>k</sub>a<sub>k</sub>e<sup>ik·r</sup>", "讲义先把多体 Bose 气写成动量模的叠加；BEC 关注的是 k=0 模。"),
+      E("1.2", "若 N<sub>0</sub> 宏观大，a<sub>0</sub>|N<sub>0</sub>⟩=√N<sub>0</sub>|N<sub>0</sub>-1⟩≈√N<sub>0</sub>|N<sub>0</sub>⟩", "当 N0 很大，少一个粒子几乎不改变宏观态，所以湮灭算符近似像一个数。"),
+      E("1.3", "a<sub>0</sub>≈√N<sub>0</sub>e<sup>-iθ</sup>，a<sub>0</sub><sup>†</sup>≈√N<sub>0</sub>e<sup>iθ</sup>", "这就是 Bogoliubov 近似的起点：凝聚态有确定的宏观相位。"),
+      E("1.4", "ρ<sub>1</sub>(r,r′)=⟨ψ†(r)ψ(r′)⟩ 在 |r-r′|→∞ 时仍有非零极限", "讲义把它叫非对角长程序；远处仍相干，说明不是普通热气体。"),
+      E("1.5", "超流 He-4 的 T<sub>λ</sub>=2.172K 与理想 Bose 气估算 T<sub>c</sub> 不完全相同", "实际液氦有强相互作用，BEC 图像有帮助，但不能直接当成理想气体。")
+    ], [
+      "考试里若问 BEC 的图像，要同时说宏观占据、相位相干和长程序。",
+      "把 a0 换成 c-number 不是代数技巧，而是宏观粒子数极限。"
+    ], "会问 BEC 与超流 He-4 的联系和差别。"),
+    S("02 理想 Bose 气的三个基本积分", [
+      E("2.1", "f<sub>B</sub>(ξ)=1/[e<sup>β(ξ-μ)</sup>-1]", "这是 Bose 分布；最低能级取 ξ0=0 时，正占据要求 μ≤0。"),
+      E("2.2", "g(ξ)dξ=g<sub>s</sub>V/(4π²)(2m/ℏ²)<sup>3/2</sup>ξ<sup>1/2</sup>dξ", "三维自由粒子的态密度由 k 空间球壳数态得到，后面所有积分都靠它。"),
+      E("2.3", "N<sub>ex</sub>=∫<sub>0</sub><sup>∞</sup>g(ξ)dξ/[z<sup>-1</sup>e<sup>βξ</sup>-1]", "先只数激发态；这里还没有把零能级单独加回来。"),
+      E("2.4", "U=∫<sub>0</sub><sup>∞</sup>ξg(ξ)dξ/[z<sup>-1</sup>e<sup>βξ</sup>-1]", "能量积分比粒子数多乘一个 ξ，零能级本身不贡献能量。"),
+      E("2.5", "Ω=kBT∫g(ξ)ln(1-ze<sup>-βξ</sup>)dξ", "巨势从每个单粒子态的 Bose grand partition function 相乘得到。")
+    ], [
+      "这一步不要急着写 Tc；必须先把 N、U、Ω 三个积分建立起来。",
+      "z=e^{βμ}，而 Bose 气要求 0&lt;z≤1。"
+    ], "会从分布函数写 N、U、Ω。"),
+    S("03 由分部积分证明 PV=(2/3)U", [
+      E("3.1", "Ω=kBT·C V∫<sub>0</sub><sup>∞</sup>ξ<sup>1/2</sup>ln(1-ze<sup>-βξ</sup>)dξ", "把三维态密度的 ξ^{1/2} 写成常数 C 乘 V。"),
+      E("3.2", "取 u=ln(1-ze<sup>-βξ</sup>)，dv=ξ<sup>1/2</sup>dξ", "讲义用分部积分把对数转成分布函数。"),
+      E("3.3", "du=β/[z<sup>-1</sup>e<sup>βξ</sup>-1] dξ，v=(2/3)ξ<sup>3/2</sup>", "边界项在 ξ=0 和 ∞ 都消失。"),
+      E("3.4", "Ω=-(2/3)C V∫<sub>0</sub><sup>∞</sup>ξ<sup>3/2</sup>dξ/[z<sup>-1</sup>e<sup>βξ</sup>-1]", "这一步把巨势积分变成与能量同型。"),
+      E("3.5", "U=C V∫<sub>0</sub><sup>∞</sup>ξ<sup>3/2</sup>dξ/[z<sup>-1</sup>e<sup>βξ</sup>-1]", "对照上一行立刻得到 Ω=-(2/3)U。"),
+      E("3.6", "Ω=-PV，所以 PV=(2/3)U", "这是非相对论自由粒子的普遍关系，Bose 统计只改变 U 的取值。")
+    ], [
+      "如果只写 PV=2U/3 而不写分部积分，考试里就是少了推导主体。",
+      "这一结论在经典极限也成立。"
+    ], "常考：从 Ω 推出状态方程。"),
+    S("04 零能级占据不能被积分吞掉", [
+      E("4.1", "N<sub>0</sub>=1/(e<sup>-βμ</sup>-1)=z/(1-z)", "零能级 ξ=0 只有离散态，不能用连续态积分近似掉。"),
+      E("4.2", "N=N<sub>0</sub>+N<sub>ex</sub>", "讲义特别强调：Bose 气和 Fermi 气不同，最低能级可容纳宏观多粒子。"),
+      E("4.3", "N/V=N<sub>0</sub>/V+(g<sub>s</sub>/λ<sub>th</sub><sup>3</sup>)g<sub>3/2</sub>(z)", "第一项是凝聚粒子密度，第二项是激发态密度。"),
+      E("4.4", "λ<sub>th</sub>=h/√(2πmkBT)", "热德布罗意波长随降温变大，意味着量子波包开始重叠。"),
+      E("4.5", "g<sub>ν</sub>(z)=1/Γ(ν)∫<sub>0</sub><sup>∞</sup>x<sup>ν-1</sup>dx/(z<sup>-1</sup>e<sup>x</sup>-1)", "讲义把积分标准化成 Bose-Einstein 函数。")
+    ], [
+      "BEC 推导最容易漏的就是 N0 项。",
+      "Fermi 气可以忽略单个态，是因为每态最多 1 个粒子；Bose 气不行。"
+    ], "必写 N=N0+Nex。"),
+    S("05 T=0 极限说明粒子为什么落入基态", [
+      E("5.1", "μ≤0，因为 f<sub>B</sub>(ξ) 必须非负且 ξ<sub>min</sub>=0", "若 μ&gt;0，最低能级分母会出问题。"),
+      E("5.2", "T→0 且 ξ&gt;0 时，e<sup>β(ξ-μ)</sup>→∞，所以 f<sub>B</sub>(ξ)→0", "所有有限正能量激发态在零温都没有粒子。"),
+      E("5.3", "ξ=0 时若 μ→0<sup>-</sup>，f<sub>B</sub>(0)=1/(e<sup>-βμ</sup>-1)→∞", "只有最低能级允许宏观占据。"),
+      E("5.4", "结论：T=0 时 N≈N<sub>0</sub>", "这不是相互作用束缚，而是 Bose 统计和能级下界共同导致。")
+    ], [
+      "这段是讲义对 BEC 物理本质的解释。",
+      "写作时要强调 μ 从负侧趋近 0。"
+    ], "容易问为什么 μ 不能大于 0。"),
+    S("06 激发态最大容纳数与临界温度", [
+      E("6.1", "g<sub>3/2</sub>(z) 随 z 增大而增大，最大值为 g<sub>3/2</sub>(1)=ζ(3/2)≈2.612", "当 μ→0，z→1，激发态可容纳数达到上限。"),
+      E("6.2", "N<sub>ex</sub>/V≤g<sub>s</sub>ζ(3/2)/λ<sub>th</sub><sup>3</sup>", "这就是讲义里的核心不等式：激发态装不下全部粒子。"),
+      E("6.3", "临界点定义：N/V=g<sub>s</sub>ζ(3/2)/λ<sub>th</sub><sup>3</sup>(T<sub>c</sub>)", "高温时 N0 可忽略；降温到这里时 z 已逼近 1。"),
+      E("6.4", "T<sub>c</sub>=2πℏ²/(mk<sub>B</sub>)·[N/(Vg<sub>s</sub>ζ(3/2))]<sup>2/3</sup>", "把 λth 的定义代入并解出 T。"),
+      E("6.5", "等价图像：λ<sub>th</sub><sup>3</sup>≈g<sub>s</sub>ζ(3/2)·V/N", "热波长体积与平均每粒子体积同量级时开始凝聚。")
+    ], [
+      "Tc 不是令能量等于某个束缚能，而是激发态数目饱和。",
+      "ζ(3/2) 数值 2.612 要记。"
+    ], "临界温度推导常考。"),
+    S("07 凝聚分数", [
+      E("7.1", "T&lt;T<sub>c</sub> 时，z≈1，N<sub>ex</sub>=Vg<sub>s</sub>ζ(3/2)/λ<sub>th</sub><sup>3</sup>", "低于临界温度后，继续增加的粒子数只能进入基态。"),
+      E("7.2", "N<sub>ex</sub>(T)/N=[λ<sub>th</sub>(T<sub>c</sub>)/λ<sub>th</sub>(T)]<sup>3</sup>", "利用临界点方程消去总密度。"),
+      E("7.3", "λ<sub>th</sub>∝T<sup>-1/2</sup>，所以 [λ<sub>c</sub>/λ<sub>th</sub>]<sup>3</sup>=(T/T<sub>c</sub>)<sup>3/2</sup>", "这是 3/2 幂的来源。"),
+      E("7.4", "N<sub>0</sub>/N=1-N<sub>ex</sub>/N=1-(T/T<sub>c</sub>)<sup>3/2</sup>", "得到凝聚分数。"),
+      E("7.5", "T=0 时 N0/N=1；T=Tc 时 N0/N=0", "检查端点可以帮助避免幂次写反。")
+    ], [
+      "这一式是最常见的 BEC 结果之一。",
+      "推导必须先用临界点方程替换密度。"
+    ], "会画 N0/N 随 T/Tc 的曲线。"),
+    S("08 低温能量与热容", [
+      E("8.1", "E=∫<sub>0</sub><sup>∞</sup>ξg(ξ)dξ/(e<sup>βξ</sup>-1)，其中 z=1", "T&lt;Tc 时 μ≈0，且基态 ξ=0 不贡献能量。"),
+      E("8.2", "令 x=βξ，E=C V(kBT)<sup>5/2</sup>∫<sub>0</sub><sup>∞</sup>x<sup>3/2</sup>dx/(e<sup>x</sup>-1)", "态密度给 ξ^{1/2}，能量再给一个 ξ，所以积分幂为 3/2。"),
+      E("8.3", "E∝T<sup>5/2</sup>", "积分是常数，只剩温度幂次。"),
+      E("8.4", "C<sub>V</sub>=(∂E/∂T)<sub>V</sub>∝T<sup>3/2</sup>", "对 T 求导后幂次少 1。"),
+      E("8.5", "更完整写法：C<sub>V</sub>=[15ζ(5/2)/(4ζ(3/2))]Nk<sub>B</sub>(T/T<sub>c</sub>)<sup>3/2</sup>", "讲义给出常系数形式，考试主要看 T^{3/2} 和来源。"),
+      E("8.6", "与超流声子 C<sub>V</sub>∝T<sup>3</sup> 不同", "理想 Bose 气低能激发是单粒子二次色散；实际超流低能是声子线性色散。")
+    ], [
+      "热容幂次要从态密度积分说明。",
+      "这也解释理想 BEC 与强相互作用超流的差别。"
+    ], "常用来区分理想 Bose 气和 He-4。")
+  ]));
+
+  setTopic("quantum", "hubbard", T("hubbard", "Hubbard 模型与平均场：讲义142-150页逐步推导", "讲义142-150页 / 考试要求14", "从二次量子化相互作用、最近邻 hopping、on-site U、平均场分解、自洽方程和磁有序判据完整展开。", "H=-tΣc†c+UΣn↑n↓，AB≈⟨A⟩B+A⟨B⟩-⟨A⟩⟨B⟩", [
+    S("01 从一般二体 Hamiltonian 到晶格模型", [
+      E("1.1", "H=Σ<sub>ij</sub>⟨i|H<sub>0</sub>|j⟩c<sub>i</sub><sup>†</sup>c<sub>j</sub>+(1/2)ΣV<sub>lmnp</sub>c<sub>l</sub><sup>†</sup>c<sub>m</sub><sup>†</sup>c<sub>n</sub>c<sub>p</sub>", "这是讲义从连续多体问题写到晶格轨道基的起点。"),
+      E("1.2", "⟨j|H<sub>0</sub>|i⟩=ε 当 i=j；=-t 当 i,j 最近邻；否则近似为 0", "只保留 onsite 能量和最近邻跃迁，得到 tight-binding 近似。"),
+      E("1.3", "H<sub>t</sub>=-tΣ<sub>⟨ij⟩σ</sub>(c<sub>iσ</sub><sup>†</sup>c<sub>jσ</sub>+h.c.)+εΣ<sub>iσ</sub>n<sub>iσ</sub>", "第一项让电子离域，第二项只是能量零点，常可并入化学势。"),
+      E("1.4", "二体矩阵元最大的是所有轨道在同一格点的局域 Coulomb 项", "Wannier 轨道局域时，跨格点相互作用先忽略。")
+    ], [
+      "Hubbard 模型不是凭空写出，是从一般二体 Hamiltonian 做局域近似。",
+      "t 倾向离域，U 倾向局域。"
+    ], "会要求说明 t 和 U 的物理意义。"),
+    S("02 on-site U 如何化成 n↑n↓", [
+      E("2.1", "H<sub>U</sub>=(U/2)Σ<sub>jσσ′</sub>c<sub>jσ</sub><sup>†</sup>c<sub>jσ′</sub><sup>†</sup>c<sub>jσ′</sub>c<sub>jσ</sub>", "这是讲义保留同一格点相互作用后的形式。"),
+      E("2.2", "σ=σ′ 的项为 0", "同一格点同一自旋不能被两个费米子同时占据，Pauli 原理使这类项消失。"),
+      E("2.3", "σ≠σ′ 有两项：↑↓ 和 ↓↑", "两项物理相同，对应同一格点上一上一下两个电子。"),
+      E("2.4", "(U/2)×2Σ<sub>j</sub>n<sub>j↑</sub>n<sub>j↓</sub>=UΣ<sub>j</sub>n<sub>j↑</sub>n<sub>j↓</sub>", "1/2 与两个自旋交叉项抵消。"),
+      E("2.5", "H=H<sub>t</sub>+UΣ<sub>j</sub>n<sub>j↑</sub>n<sub>j↓</sub>", "得到标准单带 Hubbard Hamiltonian。")
+    ], [
+      "不要直接写 U n↑n↓；讲义明确做了自旋组合的化简。",
+      "U 只惩罚双占据。"
+    ], "常考 on-site 项化简。"),
+    S("03 平均场分解公式从涨落展开得到", [
+      E("3.1", "δA=A-⟨A⟩，δB=B-⟨B⟩", "讲义先定义算符相对平均值的涨落。"),
+      E("3.2", "δAδB=AB-⟨A⟩B-A⟨B⟩+⟨A⟩⟨B⟩", "把乘积完整展开。"),
+      E("3.3", "平均场近似：δAδB≈0", "忽略二阶涨落，保留线性涨落。"),
+      E("3.4", "AB≈⟨A⟩B+A⟨B⟩-⟨A⟩⟨B⟩", "这就是讲义后面处理 Hubbard U 的通用公式。"),
+      E("3.5", "常数项 -⟨A⟩⟨B⟩ 不改本征态，但算自由能时不能随便丢", "若只求能带可省略；比较相稳定性需要保留双计数修正。")
+    ], [
+      "这段是平均场的核心推导。",
+      "自洽的意思是平均值输入和由 HMF 算出的输出一致。"
+    ], "必背 AB 平均场分解。"),
+    S("04 Hubbard U 的磁性平均场", [
+      E("4.1", "n<sub>j↑</sub>n<sub>j↓</sub>≈⟨n<sub>j↑</sub>⟩n<sub>j↓</sub>+n<sub>j↑</sub>⟨n<sub>j↓</sub>⟩-⟨n<sub>j↑</sub>⟩⟨n<sub>j↓</sub>⟩", "把 A 和 B 分别取为两个自旋密度。"),
+      E("4.2", "H<sub>U</sub><sup>MF</sup>=UΣ<sub>j</sub>[⟨n<sub>j↓</sub>⟩n<sub>j↑</sub>+⟨n<sub>j↑</sub>⟩n<sub>j↓</sub>]-常数", "电子 ↑ 看到的是 ↓ 电子形成的平均势，反之亦然。"),
+      E("4.3", "H<sub>MF</sub>=-tΣ<sub>⟨ij⟩σ</sub>(c<sub>iσ</sub><sup>†</sup>c<sub>jσ</sub>+h.c.)+Σ<sub>jσ</sub>U⟨n<sub>j,-σ</sub>⟩n<sub>jσ</sub>", "相互作用问题被变成自洽单粒子问题。"),
+      E("4.4", "m<sub>j</sub>∝⟨n<sub>j↑</sub>⟩-⟨n<sub>j↓</sub>⟩", "讲义用自旋密度差作为磁有序参量。"),
+      E("4.5", "铁磁：m<sub>j</sub> 同号；反铁磁：相邻子格 m 符号相反", "不同磁序对应不同的平均场 Ansatz。")
+    ], [
+      "这里只写 paramagnetic 会漏掉讲义的磁有序动机。",
+      "平均场势取决于待求的密度，所以必须自洽。"
+    ], "会问磁有序参量。"),
+    S("05 Fourier 变换得到自旋依赖能带", [
+      E("5.1", "c<sub>jσ</sub>=N<sup>-1/2</sup>Σ<sub>k</sub>e<sup>ik·Rj</sup>c<sub>kσ</sub>", "从实空间格点到动量空间。"),
+      E("5.2", "N<sup>-1</sup>Σ<sub>j</sub>e<sup>i(k-k′)·Rj</sup>=δ<sub>kk′</sub>", "正交关系使 Hamiltonian 在 k 上对角。"),
+      E("5.3", "最近邻 hopping 给 ε<sub>0</sub>(k)=-2t[cos(k<sub>x</sub>a)+cos(k<sub>y</sub>a)]", "讲义以方格子为例；不同格子只改变色散函数。"),
+      E("5.4", "H<sub>MF</sub>=Σ<sub>kσ</sub>[ε<sub>0</sub>(k)+U⟨n<sub>-σ</sub>⟩]c<sub>kσ</sub><sup>†</sup>c<sub>kσ</sub>", "平均场势不依赖 j 时，动量仍是好量子数。"),
+      E("5.5", "ε<sub>↑</sub>(k)=ε<sub>0</sub>(k)+U⟨n<sub>↓</sub>⟩，ε<sub>↓</sub>(k)=ε<sub>0</sub>(k)+U⟨n<sub>↑</sub>⟩", "若上下自旋密度不同，能带自发劈裂。"),
+      E("5.6", "Δε=ε<sub>↑</sub>-ε<sub>↓</sub>=U(⟨n<sub>↓</sub>⟩-⟨n<sub>↑</sub>⟩)", "能带劈裂与磁化强度直接相连。")
+    ], [
+      "这段是从格点模型到能带图像的桥。",
+      "考试容易要求写出方格子 f(k)。"
+    ], "必会 Fourier 化简。"),
+    S("06 自洽方程与 Stoner 图像", [
+      E("6.1", "给定初值 ⟨n↑⟩,⟨n↓⟩，先构造 ε<sub>↑</sub>(k),ε<sub>↓</sub>(k)", "这是自洽迭代第一步。"),
+      E("6.2", "由总粒子数确定 μ：n=Σ<sub>kσ</sub>f<sub>F</sub>(ε<sub>kσ</sub>-μ)/N", "化学势不是任意给定，要保证粒子数。"),
+      E("6.3", "输出新密度：⟨n<sub>σ</sub>⟩=N<sup>-1</sup>Σ<sub>k</sub>f<sub>F</sub>(ε<sub>kσ</sub>-μ)", "用平均场能带重新计算占据。"),
+      E("6.4", "若新旧密度不同，就把新密度代回 H<sub>MF</sub> 继续迭代", "直到输入输出一致才是平均场解。"),
+      E("6.5", "小磁化线性化给 Stoner 条件：UD(E<sub>F</sub>)&gt;1", "态密度大或 U 大时，非磁解不稳定，系统倾向自发磁化。"),
+      E("6.6", "比较不同解时应比较自由能 F=U-TS", "自洽解可能不止一个，稳定相由自由能最低决定。")
+    ], [
+      "自洽流程比最后判据更重要。",
+      "反铁磁平均场需要引入两个子格，单位胞加倍。"
+    ], "会问自洽算法和 Stoner 判据。")
+  ]));
+
+  setTopic("quantum", "hf-bcs", T("hf-bcs", "Hartree-Fock 到 BCS：讲义151-176页完整推导", "讲义151-176页 / 考试要求15-16", "从 Wick 收缩得到 Hartree/Fock，接着推导 Cooper 不稳定、库珀对算符、BCS 平均场、Nambu 表象、Bogoliubov 对角化和 gap equation。", "E<sub>k</sub>=√(ξ<sub>k</sub>²+|Δ|²)，1=g<sub>0</sub>/(2V)Σ tanh(E<sub>k</sub>/2kBT)/E<sub>k</sub>", [
+    S("01 二体 Coulomb 项与 Wick 收缩", [
+      E("1.1", "V=(1/2)Σ<sub>νμν′μ′</sub>V<sub>νμ,ν′μ′</sub>c<sub>ν</sub><sup>†</sup>c<sub>μ</sub><sup>†</sup>c<sub>μ′</sub>c<sub>ν′</sub>", "讲义从一般二次量子化二体相互作用开始。"),
+      E("1.2", "在自由粒子平均场中，⟨c<sub>ν</sub><sup>†</sup>c<sub>ν′</sub>⟩=δ<sub>νν′</sub>⟨n<sub>ν</sub>⟩", "H0 对角时，不同单粒子态的普通收缩为零。"),
+      E("1.3", "Wick：⟨c<sub>ν</sub><sup>†</sup>c<sub>μ</sub><sup>†</sup>c<sub>μ′</sub>c<sub>ν′</sub>⟩=⟨c<sub>ν</sub><sup>†</sup>c<sub>ν′</sub>⟩⟨c<sub>μ</sub><sup>†</sup>c<sub>μ′</sub>⟩-⟨c<sub>ν</sub><sup>†</sup>c<sub>μ′</sub>⟩⟨c<sub>μ</sub><sup>†</sup>c<sub>ν′</sub>⟩", "负号来自费米算符交换。"),
+      E("1.4", "代入得 [δ<sub>νν′</sub>δ<sub>μμ′</sub>-δ<sub>νμ′</sub>δ<sub>μν′</sub>]⟨n<sub>ν</sub>⟩⟨n<sub>μ</sub>⟩", "第一项是直接项，第二项是交换项。")
+    ], [
+      "Hartree-Fock 的核心不是背公式，而是 Wick 收缩的两个配对。",
+      "交换项只对全同费米子有意义。"
+    ], "常考 Wick 收缩符号。"),
+    S("02 Hartree 项、Fock 项与 HF 方程", [
+      E("2.1", "U<sub>νμ</sub>=∫drdr′|φ<sub>ν</sub>(r)|² e²/|r-r′| |φ<sub>μ</sub>(r′)|²", "这是直接 Coulomb 能，有经典电荷云相互作用图像。"),
+      E("2.2", "J<sub>νμ</sub>=∫drdr′φ<sub>ν</sub><sup>*</sup>(r)φ<sub>μ</sub><sup>*</sup>(r′) e²/|r-r′| φ<sub>ν</sub>(r′)φ<sub>μ</sub>(r)", "这是交换积分，没有经典对应。"),
+      E("2.3", "E<sub>HF</sub>=Σ<sub>ν occ</sub>⟨ν|T|ν⟩+(1/2)Σ<sub>νμ occ</sub>(U<sub>νμ</sub>-J<sub>νμ</sub>)", "1/2 避免双计数。"),
+      E("2.4", "变分 δ[E<sub>HF</sub>-Σεν(⟨φν|φν⟩-1)]=0", "用拉格朗日乘子保证轨道归一化。"),
+      E("2.5", "[-ℏ²∇²/(2m)+∫dr′ e²n(r′)/|r-r′|]φν(r)-Σ<sub>μ occ</sub>∫dr′ e²φμ*(r′)φν(r′)φμ(r)/|r-r′|=ενφν(r)", "动能加 Hartree 局域势，再减去 Fock 非局域交换势。"),
+      E("2.6", "εν 是把电子放入未占据轨道所需的单粒子能量近似", "讲义强调它不是多体总能级，而是 HF 轨道能。")
+    ], [
+      "HF 方程中最容易漏的是交换项的非局域性。",
+      "Hartree 项像平均电势，Fock 项来自反对称波函数。"
+    ], "会写 HF 方程和解释两项。"),
+    S("03 Cooper 问题：为什么任意弱吸引都会不稳定", [
+      E("3.1", "考虑一对在费米海之上的电子，动量取 k 和 -k，总动量为零", "讲义为了说明超导不稳定性，先研究最简单的两电子问题。"),
+      E("3.2", "两电子波函数 φ(r1,r2)=Σ<sub>k</sub>g<sub>k</sub>e<sup>ik·(r1-r2)</sup>[|↑↓⟩-|↓↑⟩]", "轨道部分取交换对称，自旋部分取单态反对称，满足总波函数反对称。"),
+      E("3.3", "Pauli 阻塞：只有 ε<sub>F</sub>&lt;ε<sub>k</sub>&lt;ε<sub>F</sub>+ℏω<sub>D</sub> 的态参与", "费米海以下态已占据，不能用来形成新对。"),
+      E("3.4", "Schrödinger 方程化为 (E-2ε<sub>q</sub>)g<sub>q</sub>=Σ<sub>k</sub>V<sub>qk</sub>g<sub>k</sub>", "把相互作用投影到 Cooper 对基底。"),
+      E("3.5", "取 V<sub>qk</sub>=-V（能壳内），否则 0", "讲义用常数吸引势保留最核心的配对物理。"),
+      E("3.6", "g<sub>q</sub>=VΣ<sub>k</sub>g<sub>k</sub>/(E-2ε<sub>q</sub>)", "把未知量整理成一个与 q 无关的总和。"),
+      E("3.7", "两边对 q 求和并消去 Σg，得 1=-Σ<sub>q</sub>V/(E-2ε<sub>q</sub>)", "这是束缚态方程。"),
+      E("3.8", "用 DOS 近似：1=Vρ(E<sub>F</sub>)∫<sub>εF</sub><sup>εF+ℏωD</sup>dε/(2ε-E)", "把求和换成费米面附近态密度积分。"),
+      E("3.9", "定义 E<sub>b</sub>=2ε<sub>F</sub>-E&gt;0，解得 E<sub>b</sub>≈2ℏω<sub>D</sub>e<sup>-2/[Vρ(EF)]</sup>", "指数小但总为正，所以任意弱吸引都会产生束缚 Cooper pair。")
+    ], [
+      "这一页讲义的结论是正常费米面不稳定。",
+      "binding energy 的指数形式来自对数积分。"
+    ], "Cooper 不稳定是 BCS 的前奏。"),
+    S("04 库珀对算符和 BCS Hamiltonian", [
+      E("4.1", "Λ†=∫dxdx′φ(x-x′)ψ↑†(x)ψ↓†(x′)", "先在实空间定义产生一对电子的算符。"),
+      E("4.2", "若 φ 只依赖相对坐标，Fourier 后 Λ†=Σ<sub>k</sub>φ<sub>k</sub>c<sub>k↑</sub><sup>†</sup>c<sub>-k↓</sub><sup>†</sup>", "平移不变性使总动量为零。"),
+      E("4.3", "φ<sub>k</sub>=φ<sub>-k</sub> 对应 s-wave singlet pairing", "讲义指出 s-wave 是各向同性且最常见的常规超导配对。"),
+      E("4.4", "H<sub>BCS</sub>=Σ<sub>kσ</sub>ξ<sub>k</sub>c<sub>kσ</sub><sup>†</sup>c<sub>kσ</sub>+Σ<sub>kk′</sub>V<sub>kk′</sub>c<sub>k↑</sub><sup>†</sup>c<sub>-k↓</sub><sup>†</sup>c<sub>-k′↓</sub>c<sub>k′↑</sub>", "第一项是相对化学势的单粒子能，第二项只保留 Cooper channel。"),
+      E("4.5", "V<sub>kk′</sub>=-g<sub>0</sub>/V，当 |ξ<sub>k</sub>|,|ξ<sub>k′</sub>|&lt;ℏω<sub>D</sub>；否则 0", "Debye 能壳内有声子诱导的有效吸引。")
+    ], [
+      "BCS Hamiltonian 不是全相互作用，只保留会导致库珀对散射的通道。",
+      "ξk=εk-μ。"
+    ], "会写 BCS 约化 Hamiltonian。"),
+    S("05 BCS 变分基态及其基本性质", [
+      E("5.1", "|BCS⟩=Π<sub>k</sub>(u<sub>k</sub>+v<sub>k</sub>c<sub>k↑</sub><sup>†</sup>c<sub>-k↓</sub><sup>†</sup>)|0⟩", "每个 k,-k 子空间都是“空对”和“占一对”的叠加。"),
+      E("5.2", "|u<sub>k</sub>|²+|v<sub>k</sub>|²=1", "这是每个二能级子空间的归一化条件。"),
+      E("5.3", "⟨N⟩=2Σ<sub>k</sub>|v<sub>k</sub>|²", "每个被占的 Cooper pair 含两个电子，所以有因子 2。"),
+      E("5.4", "⟨BCS|c<sub>-k↓</sub>c<sub>k↑</sub>|BCS⟩=u<sub>k</sub><sup>*</sup>v<sub>k</sub>", "这一非零反常平均值就是配对凝聚的序参量来源。"),
+      E("5.5", "BCS 态不是固定粒子数态，但适合宏观凝聚体", "讲义强调粒子数涨落在热力学极限相对很小。")
+    ], [
+      "这里必须解释 uk、vk 的概率意义。",
+      "反常平均值不为零是超导序的标志。"
+    ], "常考 BCS 波函数。"),
+    S("06 平均场序参量与 Nambu 矩阵", [
+      E("6.1", "A=Σ<sub>|ξk|&lt;ℏωD</sub>c<sub>-k↓</sub>c<sub>k↑</sub>", "把湮灭一对 Cooper pair 的算符记为 A。"),
+      E("6.2", "Δ=-(g<sub>0</sub>/V)⟨A⟩=-(g<sub>0</sub>/V)Σ⟨c<sub>-k↓</sub>c<sub>k↑</sub>⟩", "Δ 表示库珀对凝聚强度，是复序参量。"),
+      E("6.3", "A†A≈⟨A†⟩A+A†⟨A⟩-⟨A†⟩⟨A⟩", "对配对算符做平均场分解。"),
+      E("6.4", "H<sub>MF</sub>=Σ<sub>k</sub>ξ<sub>k</sub>(c<sub>k↑</sub><sup>†</sup>c<sub>k↑</sub>+c<sub>-k↓</sub><sup>†</sup>c<sub>-k↓</sub>)+Σ<sub>k</sub>(Δc<sub>k↑</sub><sup>†</sup>c<sub>-k↓</sub><sup>†</sup>+Δ* c<sub>-k↓</sub>c<sub>k↑</sub>)+V|Δ|²/g<sub>0</sub>", "得到二次平均场 Hamiltonian。"),
+      E("6.5", "定义 Nambu spinor：Ψ<sub>k</sub>=(c<sub>k↑</sub>, c<sub>-k↓</sub><sup>†</sup>)<sup>T</sup>", "把电子和空穴自由度合并。"),
+      E("6.6", "H<sub>MF</sub>=Σ<sub>k</sub>Ψ<sub>k</sub><sup>†</sup>[[ξ<sub>k</sub>,Δ],[Δ*, -ξ<sub>k</sub>]]Ψ<sub>k</sub>+常数", "讲义把 BCS 平均场写成 2×2 矩阵，方便对角化。")
+    ], [
+      "Δ 的定义和平均场分解不能省。",
+      "Nambu 表象不是新粒子，只是电子-空穴基底。"
+    ], "会从 HBCS 写 HMF。"),
+    S("07 Bogoliubov 对角化与准粒子能谱", [
+      E("7.1", "令 (c<sub>k↑</sub>, c<sub>-k↓</sub><sup>†</sup>)<sup>T</sup>=U<sub>k</sub>(γ<sub>k↑</sub>, γ<sub>-k↓</sub><sup>†</sup>)<sup>T</sup>", "Bogoliubov 变换把电子-空穴混合成准粒子。"),
+      E("7.2", "本征方程：[[ξ<sub>k</sub>,Δ],[Δ*, -ξ<sub>k</sub>]](u<sub>k</sub>,v<sub>k</sub>)<sup>T</sup>=E<sub>k</sub>(u<sub>k</sub>,v<sub>k</sub>)<sup>T</sup>", "对角化 Nambu 矩阵。"),
+      E("7.3", "det[[ξ<sub>k</sub>-E<sub>k</sub>,Δ],[Δ*, -ξ<sub>k</sub>-E<sub>k</sub>]]=0", "非零本征矢要求行列式为零。"),
+      E("7.4", "E<sub>k</sub>²=ξ<sub>k</sub>²+|Δ|²，所以 E<sub>k</sub>=√(ξ<sub>k</sub>²+|Δ|²)", "这给出超导能隙；费米面 ξ=0 处最低激发能为 |Δ|。"),
+      E("7.5", "v<sub>k</sub>²=(1/2)(1-ξ<sub>k</sub>/E<sub>k</sub>)，u<sub>k</sub>²=(1/2)(1+ξ<sub>k</sub>/E<sub>k</sub>)", "由本征方程和归一化 |u|²+|v|²=1 得到相干因子。"),
+      E("7.6", "u<sub>k</sub>v<sub>k</sub><sup>*</sup>=Δ/(2E<sub>k</sub>)", "这个关系将配对平均值和能隙方程连接起来。")
+    ], [
+      "不要只写 Ek，要给出行列式和 uk、vk。",
+      "DOS 在能隙边出现峰值，与实验隧穿谱对应。"
+    ], "Bogoliubov 对角化必考。"),
+    S("08 gap equation 与零温能隙", [
+      E("8.1", "Δ=(g<sub>0</sub>/V)Σ<sub>k</sub>u<sub>k</sub>v<sub>k</sub><sup>*</sup>[1-2f(E<sub>k</sub>)]", "有限温时准粒子占据会削弱配对。"),
+      E("8.2", "代入 u v*=Δ/(2E<sub>k</sub>)，约去 Δ，得 1=(g<sub>0</sub>/2V)Σ<sub>k</sub>tanh(E<sub>k</sub>/2kBT)/E<sub>k</sub>", "这就是讲义框出的 BCS gap equation。"),
+      E("8.3", "Σ<sub>k</sub>/V→∫<sub>|ξ|&lt;ℏωD</sub>dξ ρ(E<sub>F</sub>)", "弱耦合下只取费米面附近常数 DOS。"),
+      E("8.4", "T=0 时 tanh(E/2kBT)→1", "零温没有热激发准粒子。"),
+      E("8.5", "1/g<sub>0</sub>=ρ(E<sub>F</sub>)∫<sub>0</sub><sup>ℏωD</sup>dξ/√(ξ²+Δ<sub>0</sub>²)", "利用正负 ξ 对称把积分写成 0 到 cutoff。"),
+      E("8.6", "积分为 asinh(ℏω<sub>D</sub>/Δ<sub>0</sub>)≈ln(2ℏω<sub>D</sub>/Δ<sub>0</sub>)", "弱耦合时 cutoff 远大于 Δ。"),
+      E("8.7", "Δ<sub>0</sub>=2ℏω<sub>D</sub>e<sup>-1/[g<sub>0</sub>ρ(EF)]</sup>", "能隙对相互作用指数敏感。"),
+      E("8.8", "T=T<sub>c</sub> 时 Δ=0，可得 Δ<sub>0</sub>/(k<sub>B</sub>T<sub>c</sub>)≈1.76", "讲义把它作为 BCS 的重要数值关系。")
+    ], [
+      "gap equation 是自洽方程，不是单粒子本征值方程。",
+      "指数小结果说明弱吸引也能产生有限能隙。"
+    ], "会推零温能隙和 1.76 关系。")
+  ]));
+
+  setTopic("quantum", "linear-response", T("linear-response", "线性响应与 Kubo 公式：讲义178-185页逐步推导", "讲义178-185页", "把外场扰动、相互作用表象、演化算符一阶展开、推迟响应函数和 Fourier 表示完整串起来。", "δ⟨A⟩(q,ω)=χ(q,ω)F(q,ω)", [
+    S("01 外场扰动与响应函数定义", [
+      E("1.1", "H(t)=H<sub>0</sub>+H<sub>ext</sub>(t)", "H0 是未扰动系统，外场只作为小扰动。"),
+      E("1.2", "H<sub>ext</sub>(t)=∫d³r F(r,t)A(r)", "外场 F 与系统算符 A 耦合。"),
+      E("1.3", "例：H<sub>ext</sub>(t)=-e∫d³r φ(r,t)n(r)", "电势 φ 耦合到电荷密度 -en。"),
+      E("1.4", "δ⟨A⟩(r,t)=⟨A⟩<sub>ext</sub>-⟨A⟩<sub>0</sub>", "响应就是外场打开后期望值相对平衡值的改变。"),
+      E("1.5", "δ⟨A⟩(r,t)=∫dr′dt′ χ(r,t;r′,t′)F(r′,t′)", "χ 定义为系统对外场的广义响应率。")
+    ], [
+      "线性响应假设外场足够小，只保留 F 的一阶项。",
+      "χ 是系统本身性质，与具体外场强度无关。"
+    ], "会写响应函数定义。"),
+    S("02 相互作用表象与演化算符", [
+      E("2.1", "|ψ<sub>I</sub>(t)⟩=e<sup>iH0t/ℏ</sup>|ψ<sub>S</sub>(t)⟩", "把 H0 的时间演化吸收到态和算符里。"),
+      E("2.2", "A<sub>I</sub>(t)=e<sup>iH0t/ℏ</sup>A<sub>S</sub>e<sup>-iH0t/ℏ</sup>", "相互作用表象中的算符由 H0 演化。"),
+      E("2.3", "iℏ∂<sub>t</sub>|ψ<sub>I</sub>(t)⟩=H<sub>ext</sub><sup>I</sup>(t)|ψ<sub>I</sub>(t)⟩", "只剩扰动 Hamiltonian 驱动态矢。"),
+      E("2.4", "|ψ<sub>I</sub>(t)⟩=U(t,t0)|ψ<sub>I</sub>(t0)⟩", "定义演化算符。"),
+      E("2.5", "U(t,t0)=1-(i/ℏ)∫<sub>t0</sub><sup>t</sup>dt′H′(t′)+O(H′²)", "线性响应只保留一阶扰动。")
+    ], [
+      "讲义明确说一阶近似即可。",
+      "t0 常取 -∞，表示外场从远过去缓慢打开。"
+    ], "会从相互作用表象展开 U。"),
+    S("03 Kubo 对易子公式", [
+      E("3.1", "⟨A(t)⟩<sub>ext</sub>=⟨n0|U†(t,t0)A<sub>I</sub>(t)U(t,t0)|n0⟩ 的热平均", "在 H0 的平衡态上求扰动后的期望值。"),
+      E("3.2", "代入 U 的一阶展开：⟨A(t)⟩<sub>ext</sub>=⟨A(t)⟩<sub>0</sub>-(i/ℏ)∫<sub>t0</sub><sup>t</sup>dt′⟨[A(t),H′(t′)]⟩<sub>0</sub>", "左右两边一阶项合并成对易子。"),
+      E("3.3", "若 H′(t′)=B(t′)F(t′)，则 δ⟨A(t)⟩=∫dt′ χ<sub>AB</sub>(t-t′)F(t′)", "把外场函数提出，剩下的平衡关联就是响应核。"),
+      E("3.4", "χ<sub>AB</sub>(t-t′)=-(i/ℏ)θ(t-t′)⟨[A(t),B(t′)]⟩<sub>0</sub>", "θ 函数保证先有扰动后有响应，所以它是推迟响应函数。"),
+      E("3.5", "这就是 Kubo 公式", "它把非平衡的一阶响应化成平衡态的对易子关联函数。")
+    ], [
+      "θ(t-t′) 不能漏，它表达因果性。",
+      "平均值是未扰动 H0 的热平均。"
+    ], "Kubo 公式核心。"),
+    S("04 Fourier 表示与密度响应例子", [
+      E("4.1", "若系统平移不变，χ(r,t;r′,t′)=χ(r-r′,t-t′)", "响应只取决于相对坐标和相对时间。"),
+      E("4.2", "δ⟨A⟩(q,ω)=χ(q,ω)F(q,ω)", "卷积在 Fourier 空间变成乘积。"),
+      E("4.3", "密度响应：χ(r,t;r′,t′)=-(i/ℏ)θ(t-t′)⟨[n(r,t),n(r′,t′)]⟩", "令 A=B=n 得到电荷密度对电势的响应。"),
+      E("4.4", "n(q,t)=Σ<sub>kσ</sub>c<sub>kσ</sub><sup>†</sup>(t)c<sub>k+q,σ</sub>(t)", "密度算符的 Fourier 分量会把电子动量从 k+q 散射到 k。"),
+      E("4.5", "自由粒子演化：c<sub>kσ</sub><sup>†</sup>(t)=c<sub>kσ</sub><sup>†</sup>e<sup>iεkt/ℏ</sup>", "由 Heisenberg 方程得到时间相位。"),
+      E("4.6", "χ(q,ω)=(1/V)Σ<sub>kσ</sub>[f<sub>kσ</sub>-f<sub>k+q,σ</sub>]/[ω+(ε<sub>kσ</sub>-ε<sub>k+q,σ</sub>)/ℏ+iη]", "讲义最后得到自由费米气密度响应的标准形式。"),
+      E("4.7", "δ⟨n⟩(q,ω)=χ(q,ω)(-e)φ(q,ω)", "电势响应要再乘电荷耦合系数。")
+    ], [
+      "频率和动量空间的表达最适合算实验响应。",
+      "iη 是收敛因子，也规定推迟边界条件。"
+    ], "会写密度响应函数。")
+  ]));
+
+  setTopic("astro", "degenerate-matter", T("degenerate-matter", "20260615下：简并电子气与白矮星压强", "视频20260615下开头黑板 / 用户补充图片", "按老师黑板从量子简并判据、相空间数态、Fermi 动量、非相对论压强和极端相对论压强逐步推导。", "P<sub>NR</sub>∝n<sup>5/3</sup>，P<sub>ER</sub>∝n<sup>4/3</sup>", [
+    S("01 为什么白矮星电子要用简并气体", [
+      E("1.1", "电子 Compton 尺度：λ<sub>e</sub>≈ℏ/(m<sub>e</sub>c) 或 h/(m<sub>e</sub>c)≈2.43×10<sup>-10</sup>cm", "黑板开头先比较电子的量子长度尺度，说明高密度下电子不能当作经典点粒子。"),
+      E("1.2", "原子核尺度 l≈1fm≈10<sup>-13</sup>cm", "老师把电子尺度、核尺度和白矮星高密度环境放在一起比较。"),
+      E("1.3", "若典型动量 p 很大，普通热动能 k<sub>B</sub>T 在 10<sup>7</sup>K 时约 keV", "白矮星内部温度虽高，但热能仍小于电子 Fermi 能量量级。"),
+      E("1.4", "非相对论估算可到 p²/(2m<sub>e</sub>)≈0.04MeV；更高密度时 pc 可达 MeV 量级", "这就是黑板上从动量尺度估算简并能的意义。"),
+      E("1.5", "结论：电子热运动不是主要支撑，Pauli 原理导致的简并压强才是关键", "白矮星稳定性来自填满 Fermi 海的电子。")
+    ], [
+      "这一段不是背景介绍，而是为什么后面要用 T≈0 Fermi 气。",
+      "老师黑板上先做量级估算，再进入相空间数态。"
+    ], "会问白矮星压强来源。"),
+    S("02 相空间数态得到 Fermi 动量", [
+      E("2.1", "每个单粒子量子态在相空间占体积 h³", "这是半经典数态的基本规则。"),
+      E("2.2", "体积 V 中，动量半径 p<sub>F</sub> 的球内态数为 V·(4πp<sub>F</sub>³/3)/h³", "空间体积乘动量空间球体积，再除以 h³。"),
+      E("2.3", "电子有两个自旋态，所以 N=2·V·(4πp<sub>F</sub>³/3)/h³", "黑板上明确写了乘 2。"),
+      E("2.4", "用 h=2πℏ 化简：N/V=p<sub>F</sub>³/(3π²ℏ³)", "2·4π/3 除以 (2πℏ)^3 正好给 1/(3π²ℏ³)。"),
+      E("2.5", "令 n=N/V，得 p<sub>F</sub>=(3π²)<sup>1/3</sup>ℏn<sup>1/3</sup>", "这是后面所有能量和压强公式的起点。")
+    ], [
+      "如果只背 pF 公式，没有写数态过程，就不是完整推导。",
+      "n 是电子数密度，不是质量密度。"
+    ], "必推 Fermi 动量。"),
+    S("03 非相对论极限 pc&lt;&lt;mec²", [
+      E("3.1", "ε(p)=p²/(2m<sub>e</sub>)", "非相对论电子动能。"),
+      E("3.2", "ε<sub>F</sub>=p<sub>F</sub>²/(2m<sub>e</sub>)=ℏ²(3π²)<sup>2/3</sup>n<sup>2/3</sup>/(2m<sub>e</sub>)", "把 pF 代入得到 Fermi 能。"),
+      E("3.3", "总能量 E=2V/h³∫<sub>0</sub><sup>pF</sup>[p²/(2m<sub>e</sub>)]4πp²dp", "按动量球壳逐层求和，每个态乘自旋 2。"),
+      E("3.4", "粒子数 N=2V/h³∫<sub>0</sub><sup>pF</sup>4πp²dp", "同样的态密度积分但不乘能量。"),
+      E("3.5", "E/N=[∫p⁴dp/(2m<sub>e</sub>)]/[∫p²dp]=(3/5)p<sub>F</sub>²/(2m<sub>e</sub>)=(3/5)ε<sub>F</sub>", "p^4 积分给 pF^5/5，p^2 积分给 pF^3/3，所以出现 3/5。"),
+      E("3.6", "E=(3/5)Nε<sub>F</sub>∝N·n<sup>2/3</sup>=N<sup>5/3</sup>V<sup>-2/3</sup>", "为了求压强，要把 n=N/V 写出 V 依赖。"),
+      E("3.7", "P<sub>NR</sub>=-(∂E/∂V)<sub>N</sub>=(2/5)nε<sub>F</sub>", "对 V^{-2/3} 求导带出 2/3，再乘 3/5 得 2/5。"),
+      E("3.8", "P<sub>NR</sub>=ℏ²(3π²)<sup>2/3</sup>n<sup>5/3</sup>/(5m<sub>e</sub>)", "这就是非相对论电子简并压强。")
+    ], [
+      "黑板上写到平均动能为 3/5 εF，这里必须展示积分比值。",
+      "5/3 幂来自非相对论能量 p²。"
+    ], "白矮星非相对论压强。"),
+    S("04 极端相对论极限 pc&gt;&gt;mec²", [
+      E("4.1", "ε(p)=pc", "动量很大时电子能量近似线性依赖 p。"),
+      E("4.2", "ε<sub>F</sub>=p<sub>F</sub>c=(3π²)<sup>1/3</sup>ℏc n<sup>1/3</sup>", "仍用同一个 pF，只改能量-动量关系。"),
+      E("4.3", "E=2V/h³∫<sub>0</sub><sup>pF</sup>pc·4πp²dp", "总能量积分中能量因子从 p²/2m 改为 pc。"),
+      E("4.4", "E/N=[∫p³dp·c]/[∫p²dp]=(3/4)p<sub>F</sub>c=(3/4)ε<sub>F</sub>", "p^3 积分给 pF^4/4，粒子数仍给 pF^3/3，所以是 3/4。"),
+      E("4.5", "E=(3/4)Nε<sub>F</sub>∝N·n<sup>1/3</sup>=N<sup>4/3</sup>V<sup>-1/3</sup>", "相对论能量线性依赖 p，使体积幂次变弱。"),
+      E("4.6", "P<sub>ER</sub>=-(∂E/∂V)<sub>N</sub>=(1/4)nε<sub>F</sub>", "对 V^{-1/3} 求导带出 1/3，再乘 3/4 得 1/4。"),
+      E("4.7", "P<sub>ER</sub>=(1/4)(3π²)<sup>1/3</sup>ℏc n<sup>4/3</sup>", "这就是极端相对论电子简并压强。")
+    ], [
+      "相对论化后压强从 n^{5/3} 变为 n^{4/3}，支撑能力变弱。",
+      "这正是 Chandrasekhar 极限的物理来源。"
+    ], "会比较两个极限。"),
+    S("05 与恒星结构的连接", [
+      E("5.1", "P<sub>NR</sub>∝n<sup>5/3</sup> 对应多方指数 γ=5/3", "低质量白矮星主要在这个极限。"),
+      E("5.2", "P<sub>ER</sub>∝n<sup>4/3</sup> 对应 γ=4/3", "高密度时电子相对论化，压强随密度增长较慢。"),
+      E("5.3", "引力压缩会提高 n 和 pF，使系统从非相对论逐渐走向相对论", "质量越大，中心电子越相对论化。"),
+      E("5.4", "当 γ=4/3 时，与自引力平衡出现临界质量", "这就是白矮星 Chandrasekhar 极限的课堂物理图像。")
+    ], [
+      "这节视频开头的黑板推导应该归入天体物理的致密星/白矮星专题。",
+      "不是只写两个压强公式，而是要说明从数态到压强再到极限质量的逻辑。"
+    ], "白矮星、简并压强、相对论化。")
+  ]));
+
+  setTopic("astro", "video-notes", T("video-notes", "视频板书逐行推导：含20260615下简并电子气补全", "20260615-20260624 八段视频", "八段视频按黑板式步骤整理；其中 20260615下 已补入老师开头的电子简并压强完整推导，不再只是公式索引。", "p<sub>F</sub>=(3π²)<sup>1/3</sup>ℏn<sup>1/3</sup>，Γ≈H，Y<sub>p</sub>≈1/4", [
+    S("01 20260615上：观测量和宇宙学动机", [
+      E("1.1", "m<sub>1</sub>-m<sub>2</sub>=-2.5log<sub>10</sub>(F<sub>1</sub>/F<sub>2</sub>)", "星等定义把亮度比写成对数，方便处理巨大动态范围。"),
+      E("1.2", "m-M=5log<sub>10</sub>(d/10pc)", "距离模数把绝对星等和视星等联系起来。"),
+      E("1.3", "v=H<sub>0</sub>d", "Hubble 定律把红移速度和距离联系起来。"),
+      E("1.4", "M(r)=v²r/G", "由圆周运动 v²/r=GM(r)/r² 得旋转曲线质量估计。"),
+      E("1.5", "Olbers 佯谬：静态、无限、均匀宇宙会给出过亮夜空", "这引出宇宙膨胀和有限年龄的必要性。")
+    ], ["这段是后续膨胀宇宙和暗物质线索的观测入口。"], "星等、距离模数、旋转曲线。"),
+    S("02 20260615下：简并电子气与白矮星压强", [
+      E("2.1", "量级估算：λ<sub>e</sub>≈h/(m<sub>e</sub>c)≈2.43×10<sup>-10</sup>cm，核尺度 l≈1fm≈10<sup>-13</sup>cm", "老师黑板开头先比较电子量子尺度和微观尺度。"),
+      E("2.2", "白矮星内部 k<sub>B</sub>T 约 keV，而电子 Fermi 能可达 0.04MeV 甚至更高", "热能小于简并能，电子气可近似为零温 Fermi 气。"),
+      E("2.3", "N=2·V/h³·(4πp<sub>F</sub>³/3)", "相空间数态，2 来自电子自旋。"),
+      E("2.4", "p<sub>F</sub>=(3π²)<sup>1/3</sup>ℏn<sup>1/3</sup>", "把 n=N/V 与 h=2πℏ 代入化简。"),
+      E("2.5", "非相对论：ε<sub>F</sub>=p<sub>F</sub>²/(2m<sub>e</sub>)=ℏ²(3π²)<sup>2/3</sup>n<sup>2/3</sup>/(2m<sub>e</sub>)", "用 pc&lt;&lt;mec² 的能量关系。"),
+      E("2.6", "E/N=[2V/h³∫(p²/2m<sub>e</sub>)4πp²dp]/[2V/h³∫4πp²dp]=(3/5)ε<sub>F</sub>", "展示黑板上平均动能 3/5 εF 的积分来源。"),
+      E("2.7", "P<sub>NR</sub>=-(∂E/∂V)<sub>N</sub>=(2/5)nε<sub>F</sub>=ℏ²(3π²)<sup>2/3</sup>n<sup>5/3</sup>/(5m<sub>e</sub>)", "非相对论简并压强。"),
+      E("2.8", "相对论：ε<sub>F</sub>=p<sub>F</sub>c=(3π²)<sup>1/3</sup>ℏcn<sup>1/3</sup>", "用 pc&gt;&gt;mec² 的能量关系。"),
+      E("2.9", "E/N=[2V/h³∫pc·4πp²dp]/[2V/h³∫4πp²dp]=(3/4)ε<sub>F</sub>", "p³ 与 p² 积分比给 3/4。"),
+      E("2.10", "P<sub>ER</sub>=(1/4)nε<sub>F</sub>=(1/4)(3π²)<sup>1/3</sup>ℏcn<sup>4/3</sup>", "相对论简并压强，幂次从 5/3 降到 4/3。")
+    ], [
+      "这就是你发的 20260615下 开头黑板内容，已按数态、能量积分、压强求导补全。",
+      "后续若视频里还接 Friedmann，可在宇宙学专题里另列；这里先保证这块黑板不缺。"
+    ], "白矮星简并压强必写积分过程。"),
+    S("03 20260617上：Friedmann 方程", [
+      E("3.1", "FRW 度规：ds²=-dt²+a²(t)[dr²/(1-kr²)+r²dΩ²]", "先写均匀各向同性的几何假设。"),
+      E("3.2", "Einstein 方程 00 分量给 H²=(8πG/3)ρ-k/a²", "这是第一 Friedmann 方程。"),
+      E("3.3", "能量守恒：d(ρa³)=-p d(a³)", "膨胀做功使能量密度随尺度因子变化。"),
+      E("3.4", "等价写法：ρ˙+3H(ρ+p)=0", "把体积 a³ 展开得到连续性方程。"),
+      E("3.5", "若 p=wρ，则 ρ∝a<sup>-3(1+w)</sup>", "物质 w=0 得 a^{-3}；辐射 w=1/3 得 a^{-4}。")
+    ], ["这一段负责把几何膨胀和热史连接起来。"], "Friedmann、连续性方程。"),
+    S("04 20260617下：热平衡与退耦条件", [
+      E("4.1", "反应率 Γ=nσv", "微观碰撞频率由数密度、截面、速度给出。"),
+      E("4.2", "宇宙膨胀率 H=a˙/a", "H 的倒数是宏观膨胀时间尺度。"),
+      E("4.3", "Γ&gt;&gt;H 时维持热平衡", "碰撞足够频繁，粒子分布能跟上平衡。"),
+      E("4.4", "Γ&lt;&lt;H 时退耦或冻结", "膨胀太快，反应来不及发生。"),
+      E("4.5", "冻结条件通常取 Γ(T<sub>f</sub>)≈H(T<sub>f</sub>)", "用来估计中微子退耦、弱反应冻结、暗物质遗迹丰度。")
+    ], ["这是一切早期宇宙热史估算的共同模板。"], "Γ≈H。"),
+    S("05 20260622上：复合与 Saha 方程", [
+      E("5.1", "p+e⇌H+γ", "复合是自由质子和电子形成中性氢。"),
+      E("5.2", "化学平衡：μ<sub>p</sub>+μ<sub>e</sub>=μ<sub>H</sub>", "光子化学势为 0。"),
+      E("5.3", "非相对论稀薄气体 n<sub>i</sub>=g<sub>i</sub>(m<sub>i</sub>T/2πℏ²)<sup>3/2</sup>e<sup>(μi-mi)/T</sup>", "把化学势和数密度连接。"),
+      E("5.4", "n<sub>e</sub>n<sub>p</sub>/n<sub>H</sub>≈(m<sub>e</sub>T/2πℏ²)<sup>3/2</sup>e<sup>-B/T</sup>", "代入平衡条件得到 Saha 方程。"),
+      E("5.5", "x<sub>e</sub>²/(1-x<sub>e</sub>)=(1/n<sub>b</sub>)(m<sub>e</sub>T/2πℏ²)<sup>3/2</sup>e<sup>-B/T</sup>", "用电中性和重子数守恒改写成电离度方程。")
+    ], ["复合不是 T=13.6eV 时立刻发生，因为光子数远多于重子数。"], "Saha、电离度。"),
+    S("06 20260622下：CMB 最后散射", [
+      E("6.1", "光子散射率 Γ<sub>γ</sub>=n<sub>e</sub>σ<sub>T</sub>c", "CMB 光子主要和自由电子 Thomson 散射。"),
+      E("6.2", "复合使 n<sub>e</sub> 快速下降", "电子变成中性氢，散射靶子减少。"),
+      E("6.3", "Γ<sub>γ</sub>≈H 时光子退耦", "平均自由程变得接近宇宙尺度。"),
+      E("6.4", "退耦后的光子自由传播，形成今天观测到的 CMB", "最后散射面就是我们看到的早期宇宙照片。"),
+      E("6.5", "T<sub>CMB</sub>∝1/a", "光子波长随宇宙膨胀拉长，温度红移。")
+    ], ["要把复合、退耦、最后散射区分清楚。"], "CMB 退耦。"),
+    S("07 20260624上：中子质子冻结", [
+      E("7.1", "弱反应：n+ν<sub>e</sub>⇌p+e<sup>-</sup>，n+e<sup>+</sup>⇌p+ν̄<sub>e</sub>", "高温下弱反应维持 n/p 平衡。"),
+      E("7.2", "n<sub>n</sub>/n<sub>p</sub>≈e<sup>-Δm/T</sup>，Δm=m<sub>n</sub>-m<sub>p</sub>≈1.29MeV", "中子更重，低温时比例下降。"),
+      E("7.3", "Γ<sub>w</sub>∼G<sub>F</sub>²T⁵，H∼T²/M<sub>Pl</sub>", "比较弱相互作用率和膨胀率。"),
+      E("7.4", "Γ<sub>w</sub>≈H 后 n/p 冻结", "之后比例不再跟随平衡值快速下降。"),
+      E("7.5", "冻结到核合成开始之间，中子继续 β 衰变", "所以最终 n/p 比冻结值更小。")
+    ], ["这一节是原初氦丰度估算的前半。"], "n/p 冻结。"),
+    S("08 20260624下：原初核合成和氦丰度", [
+      E("8.1", "第一步必须形成氘：p+n→D+γ", "没有稳定氘，后续 He-4 反应链无法推进。"),
+      E("8.2", "氘结合能 B<sub>D</sub>≈2.2MeV", "虽然结合能是 MeV，但大量高能尾光子会继续光解氘。"),
+      E("8.3", "氘瓶颈：T 远低于 B<sub>D</sub> 后氘才稳定", "光子数远多于重子数是关键原因。"),
+      E("8.4", "氘稳定后反应链迅速把剩余中子锁进 He-4", "He-4 最稳定，所以中子主要进入氦核。"),
+      E("8.5", "若 r=n<sub>n</sub>/n<sub>p</sub>≈1/7，则 n<sub>He</sub>=n<sub>n</sub>/2", "每个 He-4 含两个中子。"),
+      E("8.6", "Y<sub>p</sub>=4n<sub>He</sub>/(n<sub>p</sub>+n<sub>n</sub>)=2r/(1+r)", "把氦核数换成中子数。"),
+      E("8.7", "r≈1/7 给 Y<sub>p</sub>≈1/4", "得到原初氦质量丰度约 25%。")
+    ], ["完整链条：弱冻结 → 中子衰变 → 氘瓶颈 → He-4 丰度。"], "Yp≈1/4。")
   ]));
 })();
